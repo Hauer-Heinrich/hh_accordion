@@ -1,0 +1,33 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hh="http://typo3.org/ns/HauerHeinrich/HhAccordion/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <span class="target-fix" id="accordion"></span>
+    <f:if condition="{data_tx_hhaccordion_content}">
+        <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+            <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
+                <div>
+                    <span class="target-fix" id="accordion{data.uid}{iterator.index}"></span>
+                    <a href="#accordion{data.uid}{iterator.index}" id="open-accordion{data.uid}{iterator.index}" title="open">{data_item.data.tx_hhaccordion_content_header}</a>
+                    <a href="#accordion" id="close-accordion{data.uid}{iterator.index}" title="close">{data_item.data.tx_hhaccordion_content_header}</a>
+                    <f:if condition="{data_item.data.tx_hhaccordion_content_default_text} || {data_item.data_tx_hhaccordion_content_default_assets}">
+                        <div class="accordion-content">
+                            <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
+
+                            <f:if condition="{data_item.data_tx_hhaccordion_content_default_assets}">
+                                <f:for each="{data_item.data_tx_hhaccordion_content_default_assets}" as="file">
+                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" width="200" />
+                                </f:for>
+                            </f:if>
+                        </div>
+                    </f:if>
+                </div>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
+
+</html>

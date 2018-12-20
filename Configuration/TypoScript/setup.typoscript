@@ -1,0 +1,59 @@
+tt_content.hhaccordion_hh_accordion = FLUIDTEMPLATE
+tt_content.hhaccordion_hh_accordion {
+    layoutRootPaths {
+        0 = EXT:fluid_styled_content/Resources/Private/Layouts/
+        10 = EXT:hh_accordion/Resources/Private/Layouts/
+        20 = {$plugin.tx_hhaccordion.view.layoutRootPath}
+    }
+    partialRootPaths {
+        0 = EXT:fluid_styled_content/Resources/Private/Partials/
+        10 = EXT:hh_accordion/Resources/Private/Partials/
+        20 = {$plugin.tx_hhaccordion.view.partialRootPath}
+    }
+    templateRootPaths {
+        0 = EXT:fluid_styled_content/Resources/Private/Templates/
+        10 = EXT:hh_accordion/Resources/Private/Templates/
+        20 = {$plugin.tx_hhaccordion.view.templateRootPath}
+    }
+    templateName = HhAccordion
+
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        10 {
+            if.isTrue.field = tx_hhaccordion_content
+            table = tx_hhaccordion_content
+            pidInList.field = pid
+            where = parentid=###uid### AND deleted=0 AND hidden=0
+            orderBy = sorting
+            markers.uid.field = uid
+            as = data_tx_hhaccordion_content
+
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                if.isTrue.field = tx_hhaccordion_content_default_assets
+                references {
+                    fieldName = tx_hhaccordion_content_default_assets
+                    table = tx_hhaccordion_content
+                }
+                as = data_tx_hhaccordion_content_default_assets
+            }
+
+            20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            20 {
+                if.isTrue.field = tx_hhaccordion_content_elements
+                table = tt_content
+                pidInList.field = pid
+                where = tx_hhaccordion_content_elements_parent=###uid### AND deleted=0 AND hidden=0 AND colPos=###colPos###
+                orderBy = sorting
+                markers.colPos.value = 999
+                markers.uid.field = uid
+                as = data_tx_hhaccordion_content_elements
+            }
+        }
+    }
+
+    settings {
+        cssFile = {$plugin.tx_hhaccordion.settings.cssFile}
+        jsFile = {$plugin.tx_hhaccordion.settings.jsFile}
+    }
+}
