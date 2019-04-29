@@ -19,7 +19,8 @@ let gulp = require('gulp'),
     minify = require("gulp-babel-minify"),
     sourcemaps = require('gulp-sourcemaps'),
     commandExists = require('command-exists'),
-    download = require("gulp-download-stream");
+    download = require("gulp-download-stream"),
+    giftp = require('giftp');
 
 // NATIVE NODE MODULES
 let fs = require("fs"),
@@ -74,9 +75,24 @@ gulp.task('install:onsave-atom', function(done){
 });
 
 // INSTALLER - IDE Plugins for VSCode
+// install - VSCode Plugin: https://marketplace.visualstudio.com/items?itemName=wk-j.save-and-run
 gulp.task('install:onsave-vscode', function(done){
   commandExists('code').then(function(command){
     exec('code --install-extension wk-j.save-and-run', function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      console.log("Please restart your IDE so the Plugin can be correctly initialized.");
+      done(err);
+    });
+  }).catch(function(){
+    console.log("The Command \"code\" (from Visual Studio Code) was not found or is not accessible on your System (please read the docs if you want to use it in your vscode environment: https://code.visualstudio.com/docs/editor/command-line).\nSkipped Implementation of the Auto-Save Functionality..");
+  });
+});
+
+// install - VSCode Plugin: https://marketplace.visualstudio.com/items?itemName=philfontaine.autolaunch
+gulp.task('install:autolaunch-vscode', function(done){
+  commandExists('code').then(function(command){
+    exec('code --install-extension philfontaine.autolaunch', function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
       console.log("Please restart your IDE so the Plugin can be correctly initialized.");
@@ -137,7 +153,7 @@ gulp.task('sass:uncompressed', function(done){
   gulp.src(scssPath + '/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass.sync().on('error', sass.logError))
-    .pipe(sourcemaps.write("."))
+    .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(cssPath));
   done();
 });
@@ -147,7 +163,7 @@ gulp.task('sass:compressed', function(done){
     .pipe(sourcemaps.init())
     .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({ suffix:".min" }))
-    .pipe(sourcemaps.write("."))
+    .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(cssPath));
   done();
 });
@@ -160,8 +176,14 @@ gulp.task('sass:watch', function(done){
 // JAVASCRIPT COMPRESSION
 gulp.task('js:compressed', function(done){
   gulp.src([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js'])
-    .pipe(minify())
+    .pipe(sourcemaps.init())
+    .pipe(minify({
+        builtIns: false,
+        evaluate: false,
+        mangle: false
+    }))
     .pipe(rename({ suffix:".min" }))
+    .pipe(sourcemaps.write("./sourcemaps/"))
     .pipe(gulp.dest(jsPath));
   done();
 });
@@ -169,6 +191,27 @@ gulp.task('js:compressed', function(done){
 gulp.task('js:watch', function(done){
   let watcher = gulp.watch([jsPath + '/**/*.js', '!'+ jsPath +'/**/*.min.js']);
   watcher.on('change', gulp.series('js:compressed'));
+});
+
+// GIT FTP DEPLOYER
+gulp.task('gitftp', function(done){
+  fs.stat('giftp.json', function(err, stat){ // Check if giftp.json exists
+    if(err == null){
+      giftp.run();
+      done();
+    } else if(err.code == 'ENOENT'){
+      download(repoUrlRaw + '.giftp.json')
+        .pipe(rename("giftp.json"))
+        .pipe(gulp.dest("./"))
+        .on("end", function(){
+          console.log("\x1b[31m", "WARNING: Please configure giftp.json");
+          done();
+        });
+    } else {
+      console.log(err, stat);
+      done(err);
+    }
+  });
 });
 
 // GLOBAL WATCHER / BUILD COMMANDS
