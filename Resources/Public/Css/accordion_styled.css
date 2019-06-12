@@ -6,7 +6,6 @@
   display: block;
   font-size: 1.25em;
   font-weight: normal;
-  height: 40px;
   line-height: 40px;
   padding-left: 2%;
   position: relative;
@@ -70,4 +69,4 @@
   border-top: 10px solid #333;
   transform: rotate(0deg); }
 
-/*# sourceMappingURL=accordion_styled.css.map */
+/*# sourceMappingURL=sourcemaps/accordion_styled.css.map */
