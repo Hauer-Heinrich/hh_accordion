@@ -27,7 +27,7 @@
 
                             <f:if condition="{data_item.elements}">
                                 <f:for each="{data_item.elements}" as="element" iteration="i">
-                                    <f:comment>TODO: make output</f:comment>
+                                    <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
                                 </f:for>
                             </f:if>
                         </div>
