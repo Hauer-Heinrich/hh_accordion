@@ -17,9 +17,17 @@
                         <div class="accordion-content">
                             <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
 
-                            <f:if condition="{data_item.data_tx_hhaccordion_content_default_assets}">
-                                <f:for each="{data_item.data_tx_hhaccordion_content_default_assets}" as="file">
-                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" width="200" />
+                            <f:if condition="{data_item.assets}">
+                                <div class="assets">
+                                    <f:for each="{data_item.assets}" as="file">
+                                        <f:image image="{file}" alt="{file.alternative}" title="{file.title}" width="200" />
+                                    </f:for>
+                                </div>
+                            </f:if>
+
+                            <f:if condition="{data_item.elements}">
+                                <f:for each="{data_item.elements}" as="element" iteration="i">
+                                    <f:comment>TODO: make output</f:comment>
                                 </f:for>
                             </f:if>
                         </div>

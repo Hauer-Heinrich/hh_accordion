@@ -28,26 +28,28 @@ tt_content.hhaccordion_hh_accordion {
             markers.uid.field = uid
             as = data_tx_hhaccordion_content
 
-            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-            10 {
-                if.isTrue.field = tx_hhaccordion_content_default_assets
-                references {
-                    fieldName = tx_hhaccordion_content_default_assets
-                    table = tx_hhaccordion_content
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references {
+                        if.isTrue.field = tx_hhaccordion_content_default_assets
+                        fieldName = tx_hhaccordion_content_default_assets
+                        table = tx_hhaccordion_content
+                    }
+                    as = assets
                 }
-                as = data_tx_hhaccordion_content_default_assets
-            }
 
-            20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-            20 {
-                if.isTrue.field = tx_hhaccordion_content_elements
-                table = tt_content
-                pidInList.field = pid
-                where = tx_hhaccordion_content_elements_parent=###uid### AND deleted=0 AND hidden=0 AND colPos=###colPos###
-                orderBy = sorting
-                markers.colPos.value = 999
-                markers.uid.field = uid
-                as = data_tx_hhaccordion_content_elements
+                20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+                20 {
+                    if.isTrue.field = tx_hhaccordion_content_elements
+                    table = tt_content
+                    pidInList.field = pid
+                    where = tx_hhaccordion_content_elements_parent=###uid### AND deleted=0 AND hidden=0 AND colPos=###colPos###
+                    orderBy = sorting
+                    markers.colPos.value = 999
+                    markers.uid.field = uid
+                    as = elements
+                }
             }
         }
     }
