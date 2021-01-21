@@ -28,3 +28,73 @@
     border-top: 10px solid #333;
     transform: rotate(0deg);
 }
+
+
+[id*="open-accordion"],
+[id*="close-accordion"] {
+    background: #00a486;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+[id*="open-accordion"]:after,
+[id*="close-accordion"]:after {
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.6);
+    position: absolute;
+    right: 5px;
+    top: 15px;
+    z-index: 999;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+}
+
+.accordion-content {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.accordion span:target ~ [id*="close-accordion"]:after {
+    border-top: 10px solid #333;
+    transform: rotate(0deg);
+}
+
+.accordion-content > .flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.assets-position-left,
+.assets-position-right {
+    .content {
+        flex-basis: 100%;
+    }
+
+    .assets {
+        flex-basis: auto;
+        max-width: 50%;
+    }
+
+    .content-elements {
+        flex-basis: 100%;
+    }
+}
+
+.assets-position-left {
+    .accordion-content > .flex {
+        @media screen and (min-width: $mobile) {
+            flex-direction: row;
+        }
+    }
+}
+
+.assets-position-right {
+    .accordion-content > .flex {
+        @media screen and (min-width: $mobile) {
+            flex-direction: row;
+        }
+    }
+}

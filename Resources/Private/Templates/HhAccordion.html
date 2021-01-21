@@ -9,26 +9,49 @@
     <f:if condition="{data_tx_hhaccordion_content}">
         <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
             <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
-                <div>
+                <div class="assets-layout-{data_item.data.tx_hhaccordion_content_default_assets_layout} assets-position-{data_item.data.tx_hhaccordion_content_default_assets_position}">
                     <span class="target-fix" id="accordion{data.uid}{iterator.index}"></span>
                     <a href="#accordion{data.uid}{iterator.index}" id="open-accordion{data.uid}{iterator.index}" title="open">{data_item.data.tx_hhaccordion_content_header}</a>
                     <a href="#accordion" id="close-accordion{data.uid}{iterator.index}" title="close">{data_item.data.tx_hhaccordion_content_header}</a>
+
                     <f:if condition="{data_item.data.tx_hhaccordion_content_default_text} || {data_item.data_tx_hhaccordion_content_default_assets}">
                         <div class="accordion-content">
-                            <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
+                            <div class="flex">
+                                <f:if condition="{data_item.data.tx_hhaccordion_content_default_assets_position} == 'top' || {data_item.data.tx_hhaccordion_content_default_assets_position} == 'left'">
+                                    <f:if condition="{data_item.assets}">
+                                        <div class="assets" data-assets-count="{data_item.assets -> f:count()}">
+                                            <f:for each="{data_item.assets}" as="file">
+                                                <div class="asset">
+                                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" />
+                                                </div>
+                                            </f:for>
+                                        </div>
+                                    </f:if>
+                                </f:if>
 
-                            <f:if condition="{data_item.assets}">
-                                <div class="assets">
-                                    <f:for each="{data_item.assets}" as="file">
-                                        <f:image image="{file}" alt="{file.alternative}" title="{file.title}" width="200" />
-                                    </f:for>
+                                <div class="content">
+                                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
                                 </div>
-                            </f:if>
+
+                                <f:if condition="{data_item.data.tx_hhaccordion_content_default_assets_position} == 'bottom' || {data_item.data.tx_hhaccordion_content_default_assets_position} == 'right'">
+                                    <f:if condition="{data_item.assets}">
+                                        <div class="assets" data-assets-count="{data_item.assets -> f:count()}">
+                                            <f:for each="{data_item.assets}" as="file">
+                                                <div class="asset">
+                                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" />
+                                                </div>
+                                            </f:for>
+                                        </div>
+                                    </f:if>
+                                </f:if>
+                            </div>
 
                             <f:if condition="{data_item.elements}">
-                                <f:for each="{data_item.elements}" as="element" iteration="i">
-                                    <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
-                                </f:for>
+                                <div class="content-elements" data-ce-count="{data_item.elements -> f:count()}">
+                                    <f:for each="{data_item.elements}" as="element" iteration="i">
+                                        <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
+                                    </f:for>
+                                </div>
                             </f:if>
                         </div>
                     </f:if>

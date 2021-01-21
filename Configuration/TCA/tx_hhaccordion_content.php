@@ -31,7 +31,7 @@ return [
                 tx_hhaccordion_content_header,
                 tx_hhaccordion_content_whichtype,
                 tx_hhaccordion_content_default_text,
-                tx_hhaccordion_content_default_assets,
+                --palette--;;assets,
                 tx_hhaccordion_content_elements,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 hidden,
@@ -45,8 +45,8 @@ return [
         ],
     ],
     'palettes' => [
-        1 => [
-            'showitem' => '',
+        'assets' => [
+            'showitem' => 'tx_hhaccordion_content_default_assets_layout, tx_hhaccordion_content_default_assets_position, --linebreak--, tx_hhaccordion_content_default_assets',
         ],
     ],
     'columns' => [
@@ -158,6 +158,54 @@ return [
             'config' => [
                 'type' => 'passthrough',
             ],
+        ],
+        'tx_hhaccordion_content_default_assets_layout' => [
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    0 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_layout.I.0',
+                        1 => 'default',
+                    ],
+                    1 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_layout.I.1',
+                        1 => 'gallery',
+                    ],
+                ],
+                'maxitems' => '1',
+            ],
+            'exclude' => '1',
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_layout',
+            'order' => 7,
+        ],
+        'tx_hhaccordion_content_default_assets_position' => [
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    0 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.0',
+                        1 => 'bottom',
+                    ],
+                    1 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.1',
+                        1 => 'top',
+                    ],
+                    2 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.2',
+                        1 => 'left',
+                    ],
+                    3 => [
+                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.3',
+                        1 => 'right',
+                    ],
+                ],
+                'maxitems' => '1',
+            ],
+            'exclude' => '1',
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position',
+            'order' => 7,
         ],
         'tx_hhaccordion_content_default_assets' => [
             'config' => [

@@ -33,26 +33,35 @@ namespace HauerHeinrich\HhAccordion\ViewHelpers;
  */
 
 // use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class AddAssetsDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class AddAssetsDataViewHelper extends AbstractViewHelper {
     public function initializeArguments() {
-        $this->registerArgument('type', 'string', 'Can be css or js', true);
+        $this->registerArgument('type', 'string', 'Can be css or js or json', true);
         $this->registerArgument('where', 'string', 'Can be header (header is default for css) or footer (footer is default for js)', false);
         $this->registerArgument('file', 'string', 'Can be css or js', false);
+        $this->registerArgument('compress', 'boolean', 'true / false - default=false - only for external files', false, false);
     }
 
     /**
      * Simple Fluid Viewhelper to add data to the html header tag
-     * @param string $tag
+     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     *
+     * @return string
      */
-    public function render() {
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
         $pageRender = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+        $compress = $arguments['compress'];
 
-        switch ($this->arguments['type']) {
+        switch ($arguments['type']) {
             case 'css':
-                $where = $this->arguments['where'] ? 'additional'.ucfirst($this->arguments['where']).'Data' : 'additionalHeaderData';
-                if($GLOBALS['TSFE']->$where['accordionCSS']) {
+                $where = $arguments['where'] ? 'additional'.ucfirst($arguments['where']).'Data' : 'additionalHeaderData';
+                if($GLOBALS['TSFE']->$where['sliderCSS']) {
                     $searchReplaceArray = array(
                         '<style>' => '',
                         '</style>' => ''
@@ -60,24 +69,24 @@ class AddAssetsDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
                     $resultOLD = str_replace(
                         array_keys($searchReplaceArray),
                         array_values($searchReplaceArray),
-                        $GLOBALS['TSFE']->$where['accordionCSS']
+                        $GLOBALS['TSFE']->$where['sliderCSS']
                     );
                     $resultNEW = str_replace(
                         array_keys($searchReplaceArray),
                         array_values($searchReplaceArray),
-                        trim($this->renderChildren())
+                        trim($renderChildrenClosure())
                     );
 
-                    $GLOBALS['TSFE']->$where['accordionCSS'] = "<style>" . $resultOLD . $resultNEW ."</style>";
+                    $GLOBALS['TSFE']->$where['sliderCSS'] = "<style>" . $resultOLD . $resultNEW ."</style>";
                 } else {
-                    $GLOBALS['TSFE']->$where['accordionCSS'] = htmlspecialchars(trim($this->renderChildren()));
+                    $GLOBALS['TSFE']->$where['sliderCSS'] = htmlspecialchars(trim($renderChildrenClosure()));
                 }
 
                 // ToDo: $pageRender->addCssInlineBlock();
                 break;
             case 'js':
-                $where = $this->arguments['where'] ? 'additional'.ucfirst($this->arguments['where']).'Data' : 'additionalFooterData';
-                if($GLOBALS['TSFE']->$where['accordionJS']) {
+                $where = $arguments['where'] ? 'additional'.ucfirst($arguments['where']).'Data' : 'additionalFooterData';
+                if($GLOBALS['TSFE']->$where['sliderJS']) {
                     $searchReplaceArray = array(
                         '<script>' => '',
                         '</script>' => ''
@@ -85,29 +94,39 @@ class AddAssetsDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
                     $resultOLD = str_replace(
                         array_keys($searchReplaceArray),
                         array_values($searchReplaceArray),
-                        $GLOBALS['TSFE']->$where['accordionJS']
+                        $GLOBALS['TSFE']->$where['sliderJS']
                     );
                     $resultNEW = str_replace(
                         array_keys($searchReplaceArray),
                         array_values($searchReplaceArray),
-                        trim($this->renderChildren())
+                        trim($renderChildrenClosure())
                     );
 
-                    $GLOBALS['TSFE']->$where['accordionJS'] = "<script>" . $resultOLD . $resultNEW ."</script>";
+                    $GLOBALS['TSFE']->$where['sliderJS'] = "<script>" . $resultOLD . $resultNEW ."</script>";
                 } else {
-                    $GLOBALS['TSFE']->$where['accordionJS'] = trim($this->renderChildren());
+                    $GLOBALS['TSFE']->$where['sliderJS'] = trim($renderChildrenClosure());
                 }
 
                 // ToDo: $pageRender->addJsFooterInlineCode();  ->addJsInlineCode();
                 break;
             case 'cssFile':
-                $pageRender->addCssFile(trim($this->arguments['file']), 'stylesheet', 'all');
+                $pageRender->addCssFile(trim($arguments['file']), 'stylesheet', 'all');
+                break;
+            case 'cssLibrary':
+                $pageRender->addCssLibrary(trim($arguments['file']), 'stylesheet', 'all');
                 break;
             case 'jsFile':
-                if($this->arguments['where'] == "header") {
-                    $pageRender->addJsFile(trim($this->arguments['file']), '', true, false, '', true, '|', false, '', true);
+                if($arguments['where'] == "header") {
+                    $pageRender->addJsFile(trim($arguments['file']), '', $compress, false, '', true, '|', false, '', true);
                 } else {
-                    $pageRender->addJsFooterFile(trim($this->arguments['file']), '', true, false, '', true, '|', false, '', true);
+                    $pageRender->addJsFooterFile(trim($arguments['file']), '', $compress, false, '', true, '|', false, '', true);
+                }
+                break;
+            case 'json':
+                if($arguments['where'] == "header") {
+                    $pageRender->addHeaderData(trim($renderChildrenClosure()));
+                } else {
+                    $pageRender->addFooterData(trim($renderChildrenClosure()));
                 }
                 break;
             default:
