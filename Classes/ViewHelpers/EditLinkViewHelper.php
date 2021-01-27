@@ -50,7 +50,8 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper
                 ],
                 'returnUrl' => GeneralUtility::getIndpEnv('REQUEST_URI')
             ];
-            $uri = BackendUtility::getModuleUrl('record_edit', $urlParameters);
+            $uri = GeneralUtility::makeInstance(UriBuilder::class);
+            $uri->buildUriFromRoute('record_edit', $urlParameters);
 
             $this->tag->addAttribute('href', $uri);
         }
