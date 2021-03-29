@@ -14,7 +14,7 @@
                     <a href="#accordion{data.uid}{iterator.index}" id="open-accordion{data.uid}{iterator.index}" title="open">{data_item.data.tx_hhaccordion_content_header}</a>
                     <a href="#accordion" id="close-accordion{data.uid}{iterator.index}" title="close">{data_item.data.tx_hhaccordion_content_header}</a>
 
-                    <f:if condition="{data_item.data.tx_hhaccordion_content_default_text} || {data_item.data_tx_hhaccordion_content_default_assets}">
+                    <f:if condition="{data_item.data.tx_hhaccordion_content_default_text} || {data_item.data_tx_hhaccordion_content_default_assets} || {data_item.elements}">
                         <div class="accordion-content">
                             <div class="flex">
                                 <f:if condition="{data_item.data.tx_hhaccordion_content_default_assets_position} == 'top' || {data_item.data.tx_hhaccordion_content_default_assets_position} == 'left'">
