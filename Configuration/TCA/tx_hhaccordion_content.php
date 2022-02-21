@@ -299,15 +299,15 @@ return [
         'tx_hhaccordion_content_elements' => [
             'config' => [
                 'appearance' => [
-                'collapseAll' => '1',
-                'enabledControls' => [
-                    'dragdrop' => '1',
-                ],
-                'levelLinksPosition' => 'top',
-                'showAllLocalizationLink' => '1',
-                'showPossibleLocalizationRecords' => '1',
-                'showSynchronizationLink' => '1',
-                'useSortable' => '1',
+                    'collapseAll' => '1',
+                    'enabledControls' => [
+                        'dragdrop' => '1',
+                    ],
+                    'levelLinksPosition' => 'top',
+                    'showAllLocalizationLink' => '1',
+                    'showPossibleLocalizationRecords' => '1',
+                    'showSynchronizationLink' => '1',
+                    'useSortable' => '1',
                 ],
                 'foreign_sortby' => 'sorting',
                 'foreign_table' => 'tt_content',
