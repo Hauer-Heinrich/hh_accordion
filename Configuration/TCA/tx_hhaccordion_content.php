@@ -318,6 +318,11 @@ return [
                                 'default' => '999',
                             ],
                         ],
+                        'CType' => [
+                            'config' => [
+                                'default' => 'textmedia',
+                            ],
+                        ],
                     ],
                 ],
                 'type' => 'inline',
