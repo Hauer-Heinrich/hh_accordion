@@ -250,12 +250,83 @@ return [
             ]
         ],
         'tx_hhaccordion_content_default_assets' => [
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:media',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('media', [
-                'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:media.addFileReference'
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'sys_file_reference',
+                'foreign_field' => 'uid_foreign',
+                'foreign_sortby' => 'sorting_foreign',
+                'foreign_table_field' => 'tablenames',
+                'foreign_match_fields' => [
+                    'fieldname' => 'tx_hhaccordion_content_default_assets',
                 ],
-            ])
+                'foreign_label' => 'uid_local',
+                'foreign_selector' => 'uid_local',
+                'overrideChildTca' => [
+                    'columns' => [
+                        'uid_local' => [
+                            'config' => [
+                                'appearance' => [
+                                    'elementBrowserType' => 'file',
+                                    'elementBrowserAllowed' => 'png,jpg,jpeg,svg,gif,youtube',
+                                ],
+                            ],
+                        ],
+                    ],
+                    'types' => [
+                        0 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                        1 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                        2 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                        3 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                        4 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                        5 => [
+                            'showitem' => '--palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette, --palette--;;filePalette',
+                        ],
+                    ],
+                ],
+                'filter' => [
+                    0 => [
+                        'userFunc' => 'TYPO3\\CMS\\Core\\Resource\\Filter\\FileExtensionFilter->filterInlineChildren',
+                        'parameters' => [
+                            'allowedFileExtensions' => 'png,jpg,jpeg,svg,gif,youtube',
+                        ],
+                    ],
+                ],
+                'appearance' => [
+                    'useSortable' => '1',
+                    'headerThumbnail' => [
+                        'field' => 'uid_local',
+                        'width' => '45',
+                        'height' => '45c',
+                    ],
+                    'enabledControls' => [
+                        'info' => 'tx_hhaccordion_content_default_assets',
+                        'new' => false,
+                        'dragdrop' => 'tx_hhaccordion_content_default_assets',
+                        'sort' => false,
+                        'hide' => 'tx_hhaccordion_content_default_assets',
+                        'delete' => 'tx_hhaccordion_content_default_assets',
+                    ],
+                    'collapseAll' => '1',
+                    'expandSingle' => '1',
+                    'showAllLocalizationLink' => '1',
+                    'showPossibleLocalizationRecords' => '1',
+                    'showSynchronizationLink' => '1',
+                    'fileUploadAllowed' => false,
+                ],
+            ],
+            'exclude' => '1',
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets',
+            'order' => 8,
         ],
         'tx_hhaccordion_content_default_text' => [
             'config' => [
