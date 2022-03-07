@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hh="http://typo3.org/ns/HauerHeinrich/HhAccordion/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<hh:editLink element="{row}">
+    <f:if condition="{processedRow.header}">
+        <strong>{processedRow.header}</strong>
+    </f:if>
+    <f:if condition="{processedRow.subheader}">
+        <strong>{processedRow.subheader}</strong>
+    </f:if>
+    <f:if condition="{processedRow.tx_hhaccordion_content}">
+        <strong><f:translate key="LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhaccordion_content" /></strong>
+        <f:for each="{processedRow.tx_hhaccordion_content}" as="item">
+            <ul>
+                <li>
+                    {item.tx_hhaccordion_content_header}
+                </li>
+            </ul>
+        </f:for>
+    </f:if>
+</hh:editLink>
+
+</html>

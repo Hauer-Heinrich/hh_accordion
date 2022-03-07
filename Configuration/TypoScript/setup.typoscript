@@ -15,7 +15,7 @@ tt_content.hhaccordion_hh_accordion {
         10 = EXT:hh_accordion/Resources/Private/Templates/
         20 = {$plugin.tx_hhaccordion.view.templateRootPath}
     }
-    templateName = HhAccordion
+    templateName = Accordion
 
     dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -37,6 +37,22 @@ tt_content.hhaccordion_hh_accordion {
                         table = tx_hhaccordion_content
                     }
                     as = assets
+                }
+
+                15 = TYPO3\CMS\Frontend\DataProcessing\GalleryProcessor
+                15 {
+                    filesProcessedDataKey = assets
+                    mediaOrientation.field = tx_hhaccordion_content_default_assets_position
+                    # numberOfColumns.field = imagecols
+                    # equalMediaHeight.field = imageheight
+                    # equalMediaWidth.field = imagewidth
+                    columnSpacing = 0
+                    # borderEnabled.field = imageborder
+                    # borderPadding = 0
+                    # borderWidth = 0
+                    maxGalleryWidth = {$styles.content.mediatext.maxW}
+                    maxGalleryWidthInText = {$styles.content.mediatext.maxWInText}
+                    as = gallery
                 }
 
                 20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor

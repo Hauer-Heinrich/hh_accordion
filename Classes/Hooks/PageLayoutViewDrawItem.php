@@ -13,9 +13,9 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
     /**
      * @var array
      */
-    protected $supportedContentTypes = array (
-        'hhaccordion_hh_accordion' => 'HhAccordion',
-    );
+    protected $supportedContentTypes = [
+        'hhaccordion_hh_accordion' => 'Accordion',
+    ];
 
     /**
      * @var StandaloneView
@@ -39,7 +39,7 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
         if (!isset($this->supportedContentTypes[$row['CType']])) {
             return;
         }
-        
+
         $formDataGroup = GeneralUtility::makeInstance(TcaDatabaseRecord::class);
         $formDataCompiler = GeneralUtility::makeInstance(FormDataCompiler::class, $formDataGroup);
         $formDataCompilerInput = [
@@ -51,7 +51,7 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
         try {
             $result = $formDataCompiler->compile($formDataCompilerInput);
             $processedRow = $this->getProcessedData($result['databaseRow'], $result['processedTca']['columns']);
-            
+
             $this->configureView($result['pageTsConfig'], $row['CType']);
             $this->view->assignMultiple(
                 [
@@ -59,7 +59,7 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
                     'processedRow' => $processedRow,
                 ]
             );
-    
+
             $itemContent = $this->view->render();
         } catch (Exception $exception) {
             $message = $GLOBALS['BE_USER']->errorMsg;
@@ -69,7 +69,7 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
 
             $itemContent = $message;
         }
-        
+
         $drawItem = false;
     }
 
@@ -124,7 +124,7 @@ class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
             if (!isset($config['children'])) {
                 continue;
             }
-            
+
             $processedRow[$field] = [];
             foreach ($config['children'] as $child) {
                 if (!$child['isInlineChildExpanded']) {
