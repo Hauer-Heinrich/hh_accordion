@@ -32,7 +32,7 @@
          * @param {String} hashId - example: "#accordion325628"
          */
         function openDetail(hashId) {
-            window.location.hash = hashId;
+            window.history.pushState(null, null, hashId);
         }
 
         /**
@@ -43,7 +43,7 @@
             var otherSummary = document.querySelectorAll(".hh-accordion summary:not([data-hash='" + hashId + "'])");
             otherSummary.forEach(function (summary) {
                 summary.parentNode.open = false;
-                window.location.hash = ""; // FEATURE: get rid of sign "#" at the url
+                window.history.pushState(null, "", " ");
             });
         }
 
