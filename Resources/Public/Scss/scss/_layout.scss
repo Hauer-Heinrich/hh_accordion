@@ -53,7 +53,7 @@
                 }
             }
 
-            > *:not(summary):not(.summary-chevron-down) {
+            > :not(summary):not(.summary-chevron-down) {
                 border-top: 1px solid #e2e8f0;
                 padding: 1em;
             }
@@ -66,6 +66,7 @@
             position: absolute;
             right: 1em;
             top: 0.75em;
+            width: 24px;
 
             svg {
                 display: block;
