@@ -331,7 +331,6 @@ return [
         'tx_hhaccordion_content_default_text' => [
             'config' => [
                 'enableRichtext' => '1',
-                'richtextConfiguration' => 'default',
                 'type' => 'text',
             ],
             'exclude' => '1',
