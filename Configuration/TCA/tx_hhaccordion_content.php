@@ -267,7 +267,7 @@ return [
                             'config' => [
                                 'appearance' => [
                                     'elementBrowserType' => 'file',
-                                    'elementBrowserAllowed' => 'png,jpg,jpeg,svg,gif,youtube',
+                                    'elementBrowserAllowed' => 'png,jpg,jpeg,svg,gif,youtube,vimeo',
                                 ],
                             ],
                         ],
@@ -297,7 +297,7 @@ return [
                     0 => [
                         'userFunc' => 'TYPO3\\CMS\\Core\\Resource\\Filter\\FileExtensionFilter->filterInlineChildren',
                         'parameters' => [
-                            'allowedFileExtensions' => 'png,jpg,jpeg,svg,gif,youtube',
+                            'allowedFileExtensions' => 'png,jpg,jpeg,svg,gif,youtube,vimeo',
                         ],
                     ],
                 ],
