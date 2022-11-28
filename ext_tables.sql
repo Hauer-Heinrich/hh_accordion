@@ -1,6 +1,7 @@
 CREATE TABLE tt_content (
     tx_hhaccordion_content_elements_parent int(11) unsigned DEFAULT '0' NOT NULL,
     tx_hhaccordion_arrows int(11) DEFAULT '0' NOT NULL,
+    tx_hhaccordion_type int(11) DEFAULT '0' NOT NULL,
     tx_hhaccordion_content int(11) unsigned DEFAULT '0' NOT NULL
 );
 CREATE TABLE tx_hhaccordion_accordion (

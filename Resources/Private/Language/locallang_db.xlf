@@ -57,6 +57,9 @@
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_whichtype.I.1" xml:space="preserve">
         <source>ContentElements (CE)</source>
       </trans-unit>
+      <trans-unit id="tt_content.tx_hhaccordion_type" xml:space="preserve">
+        <source>Display type</source>
+      </trans-unit>
       <trans-unit id="tt_content.tx_hhaccordion_arrows" xml:space="preserve">
         <source>Arrows</source>
       </trans-unit>

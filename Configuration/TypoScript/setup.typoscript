@@ -15,7 +15,19 @@ tt_content.hhaccordion_hh_accordion {
         10 = EXT:hh_accordion/Resources/Private/Templates/
         20 = {$plugin.tx_hhaccordion.view.templateRootPath}
     }
-    templateName = Accordion
+    # templateName = Accordion
+
+    templateName = TEXT
+    templateName.stdWrap {
+        cObject = CASE
+        cObject {
+            key.data = FIELD:tx_hhaccordion_type
+            default = TEXT
+            default.value = Accordion
+            1 = TEXT
+            1.value = Tabs
+        }
+    }
 
     dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -71,7 +83,7 @@ tt_content.hhaccordion_hh_accordion {
     }
 
     settings {
-        cssFile = {$plugin.tx_hhaccordion.settings.cssFile}
+        cssFileStyle = {$plugin.tx_hhaccordion.settings.cssFileStyle}
         jsFile = {$plugin.tx_hhaccordion.settings.jsFile}
     }
 }

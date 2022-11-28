@@ -18,17 +18,35 @@
     }
 
     .accordion {
-        background-color: #fff;
-        border-color: #e2e8f0;
-        border-radius: 8px;
-        border-style: solid;
-        border-width: 1px;
+        background-color: var(
+            --accordion-background-color,
+            #fff
+        );
+        border-color: var(
+            --accordion-border-color,
+            #ccc
+        );
+        border-radius: var(
+            --accordion-border-radius,
+            8px
+        );
+        border-style: var(
+            --accordion-border-style,
+            solid
+        );
+        border-width: var(
+            --accordion-border-width,
+            1px
+        );
 
         > details {
             position: relative;
 
             &:not(:first-child) {
-                border-top: 1px solid #e2e8f0;
+                border-top: 1px solid var(
+                    --details-border-color,
+                    #ccc
+                );
             }
 
             > summary {
@@ -54,14 +72,20 @@
             }
 
             > :not(summary):not(.summary-chevron-down) {
-                border-top: 1px solid #e2e8f0;
+                border-top: var(
+                    --accordion-content-border-top,
+                    1px solid #ccc
+                );
                 padding: 1em;
             }
         }
 
         .summary-chevron-up,
         .summary-chevron-down {
-            background-color: #fff;
+            background-color: var(
+                --accordion-summary-chevron-background-color,
+                #fff
+            );
             pointer-events: none;
             position: absolute;
             right: 1em;

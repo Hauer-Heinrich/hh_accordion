@@ -21,7 +21,7 @@
             "url": "https://www.paypal.com/paypalme/hauerheinrich"
         }
     ],
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": ["MIT"],
     "keywords": [
         "TYPO3 CMS",
@@ -33,10 +33,10 @@
         "typo3-ter/hh-accordion": "self.version"
     },
     "require": {
-        "typo3/cms-core": "^9.5.0 || ^10.2",
-        "typo3/cms-fluid": "^9.5.0 || ^10.2",
-        "typo3/cms-frontend": "^9.5.0 || ^10.2",
-        "typo3/cms-fluid-styled-content": "^9.5.0 || ^10.2"
+        "typo3/cms-core": "^10.4.0 || ^11.5.0",
+        "typo3/cms-fluid": "^10.4.0 || ^11.5.0",
+        "typo3/cms-frontend": "^10.4.0 || ^11.5.0",
+        "typo3/cms-fluid-styled-content": "^10.4.0 || ^11.5.0"
     },
     "autoload": {
         "psr-4": {

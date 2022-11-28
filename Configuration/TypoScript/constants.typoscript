@@ -11,10 +11,10 @@ plugin.tx_hhaccordion {
     }
 
     settings {
-        # cat=hh_accordion/010; type=boolean; label=Include swiper CSS file?
-        cssFile = 1
+        # cat=hh_accordion/010; type=options[0,accordion_default]; label=Include accordion/tab CSS with styles/layout?
+        cssFileStyle = 1
 
-        # cat=hh_accordion/010; type=boolean; label=Include swiper JavaScript file?
+        # cat=hh_accordion/010; type=boolean; label=Include accordion/tab JavaScript file for URL #hash/history function?
         jsFile = 1
     }
 }

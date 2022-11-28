@@ -1,0 +1,106 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hhacc="http://typo3.org/ns/HauerHeinrich/HhAccordion/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:debug>{_all}</f:debug>
+<f:layout name="Default" />
+
+<f:section name="Content">
+<f:if condition="{data_tx_hhaccordion_content}">
+    <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+            <button class="header" type="button">
+                <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
+                    {data_item.data.tx_hhaccordion_content_header}
+                </f:if>
+            </button>
+
+            <div class="ce-textpic ce-{data_item.gallery.position.horizontal} ce-{data_item.gallery.position.vertical}{f:if(condition: data_item.gallery.position.noWrap, then: ' ce-nowrap')}">
+                <f:if condition="{data_item.assets}">
+                    <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
+                        <f:for each="{data_item.assets}" as="file">
+                            <div class="ce-column" data-type="{file.type}">
+                                <f:switch expression="{file.type}">
+                                    <f:case value="3">
+                                        <f:render partial="Media/Type/Audio" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:case>
+                                    <f:case value="4">
+                                        <f:render partial="Media/Type/Video" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:case>
+                                    <f:defaultCase>
+                                        <f:render partial="Media/Type/Image" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:defaultCase>
+                                </f:switch>
+                            </div>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <f:if condition="{data_item.data.tx_hhaccordion_content_default_text}">
+                    <div class="ce-bodytext">
+                        <f:format.html>{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
+                    </div>
+                </f:if>
+            </div>
+
+            <f:if condition="{data_item.elements}">
+                <div class="content-elements" data-ce-count="{data_item.elements -> f:count()}">
+                    <f:for each="{data_item.elements}" as="element" iteration="i">
+                        <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
+                    </f:for>
+                </div>
+            </f:if>
+    </f:for>
+</f:if>
+<style>
+    .type-tabs .accordion {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-template-areas: "header"
+                            "content";
+    }
+    .type-tabs .accordion > .header {
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .type-tabs .accordion > div {
+        background-color: #fff;
+        display: none;
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: span content;
+    }
+    .type-tabs .accordion > .header:first-child + div {
+        display: block;
+        z-index: 50;
+    }
+
+    .type-tabs .accordion > .header:focus + div {
+        display: block;
+        z-index: 100;
+    }
+
+    .type-tabs .accordion[data-item-count="2"] {
+        grid-template-columns: 50% 50%;
+    }
+
+    .type-tabs .accordion[data-item-count="3"] {
+        grid-template-columns: repeat(3, calc(100% / 3));
+    }
+
+    .type-tabs .accordion[data-item-count="4"] {
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+
+    .type-tabs .accordion[data-item-count="5"] {
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
+
+    .type-tabs .accordion[data-item-count="6"] {
+        grid-template-columns: repeat(6, calc(100% / 6));
+    }
+</style>
+
+</f:section>
+
+</html>
