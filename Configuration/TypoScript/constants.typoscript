@@ -12,7 +12,7 @@ plugin.tx_hhaccordion {
 
     settings {
         # cat=hh_accordion/010; type=options[0,accordion_default]; label=Include accordion/tab CSS with styles/layout?
-        cssFileStyle = 1
+        cssFileStyle = accordion_default
 
         # cat=hh_accordion/010; type=boolean; label=Include accordion/tab JavaScript file for URL #hash/history function?
         jsFile = 1
