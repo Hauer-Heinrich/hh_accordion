@@ -9,7 +9,7 @@
         // check if location.hash is given on page-load // new request
         if (window.location.hash) {
             if (window.location.hash.startsWith("#accordion")) {
-                document.querySelector("summary[data-hash='" + window.location.hash + "']").parentNode.open = true;
+                toggleAccDetails(window.location.hash);
             }
         }
 

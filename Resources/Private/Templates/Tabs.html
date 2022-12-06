@@ -7,13 +7,18 @@
 
 <f:section name="Content">
 <f:if condition="{data_tx_hhaccordion_content}">
-    <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
-            <button class="header" type="button">
+    <div class="menu menu-tabs" role="tablist">
+        <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+            <button class="header" id="tab-{data.uid}-{iterator.cycle}" type="button" data-hash="#panel-{data.uid}-{iterator.cycle}" role="tab" aria-controls="panel-{data.uid}-{iterator.cycle}" {f:if(condition: '{iterator.isFirst}', then: 'aria-selected="true"', else: 'aria-selected="false"')} tabindex="{f:if(condition: '{iterator.isFirst}', then: '0', else: '-1')}">
                 <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
                     {data_item.data.tx_hhaccordion_content_header}
                 </f:if>
             </button>
+        </f:for>
+    </div>
 
+    <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+        <div class="content" id="panel-{data.uid}-{iterator.cycle}" role="tabpanel" tabindex="0" aria-labelledby="tab-{data.uid}-{iterator.cycle}" {f:if(condition: '{iterator.isFirst}', then: '', else: 'hidden')}>
             <div class="ce-textpic ce-{data_item.gallery.position.horizontal} ce-{data_item.gallery.position.vertical}{f:if(condition: data_item.gallery.position.noWrap, then: ' ce-nowrap')}">
                 <f:if condition="{data_item.assets}">
                     <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
@@ -49,62 +54,9 @@
                     </f:for>
                 </div>
             </f:if>
+        </div>
     </f:for>
 </f:if>
-<style>
-    @supports selector(:focus-visible) {
-        .type-tabs .accordion {
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: auto auto;
-            grid-template-areas: "header"
-                                "content";
-        }
-        .type-tabs .accordion > .header {
-            grid-row-start: 1;
-            grid-row-end: 2;
-        }
-        .type-tabs .accordion > div {
-            background-color: #fff;
-            display: none;
-            grid-row-start: 2;
-            grid-column-start: 1;
-            grid-column-end: span content;
-        }
-    }
-
-    .type-tabs .accordion > .header:first-child + div {
-        display: block;
-        z-index: 50;
-    }
-
-    .type-tabs .accordion > .header:focus + div,
-    .type-tabs .accordion > .header:focus-within + div:focus-within {
-        display: block;
-        z-index: 100;
-    }
-
-    .type-tabs .accordion[data-item-count="2"] {
-        grid-template-columns: 50% 50%;
-    }
-
-    .type-tabs .accordion[data-item-count="3"] {
-        grid-template-columns: repeat(3, calc(100% / 3));
-    }
-
-    .type-tabs .accordion[data-item-count="4"] {
-        grid-template-columns: 25% 25% 25% 25%;
-    }
-
-    .type-tabs .accordion[data-item-count="5"] {
-        grid-template-columns: 20% 20% 20% 20% 20%;
-    }
-
-    .type-tabs .accordion[data-item-count="6"] {
-        grid-template-columns: repeat(6, calc(100% / 6));
-    }
-</style>
-
 </f:section>
 
 </html>

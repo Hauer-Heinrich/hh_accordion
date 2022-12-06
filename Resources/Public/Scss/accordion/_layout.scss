@@ -1,0 +1,66 @@
+.hh-accordion {
+    .accordion {
+        background-color: var(
+            --accordion-background-color,
+            #fff
+        );
+        border-color: var(
+            --accordion-border-color,
+            #ccc
+        );
+        border-radius: var(
+            --accordion-border-radius,
+            8px
+        );
+        border-style: var(
+            --accordion-border-style,
+            solid
+        );
+        border-width: var(
+            --accordion-border-width,
+            1px
+        );
+
+        > details {
+            &:not(:first-child) {
+                border-top: 1px solid var(
+                    --accordion-details-border-color,
+                    #ccc
+                );
+            }
+
+            > summary {
+                padding: 1em;
+
+                &:hover .summary-chevron-up svg {
+                    opacity: 1;
+                }
+            }
+
+            > :not(summary):not(.summary-chevron-down) {
+                border-top: var(
+                    --accordion-content-border-top,
+                    1px solid #ccc
+                );
+                padding: 1em;
+            }
+        }
+
+        .summary-chevron-up,
+        .summary-chevron-down {
+            background-color: var(
+                --accordion-summary-chevron-background-color,
+                #fff
+            );
+            pointer-events: none;
+            position: absolute;
+            right: 1em;
+            top: 0.75em;
+            width: 24px;
+
+            svg {
+                display: block;
+            }
+        }
+    }
+}

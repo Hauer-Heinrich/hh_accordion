@@ -46,7 +46,10 @@
         <source>Content Elements</source>
       </trans-unit>
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_header" xml:space="preserve">
-        <source>Content header (for click on it)</source>
+        <source>Content header (accordion / tab title)</source>
+      </trans-unit>
+      <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_header.description" xml:space="preserve">
+        <source>Title on which you click to open.</source>
       </trans-unit>
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_whichtype" xml:space="preserve">
         <source>Which content type?</source>

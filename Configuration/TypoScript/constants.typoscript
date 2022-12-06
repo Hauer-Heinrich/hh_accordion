@@ -11,10 +11,16 @@ plugin.tx_hhaccordion {
     }
 
     settings {
-        # cat=hh_accordion/010; type=options[0,accordion_default]; label=Include accordion/tab CSS with styles/layout?
-        cssFileStyle = accordion_default
+        # cat=hh_accordion/010; type=options[0,accordion_default]; label=Include accordion CSS with styles/layout?
+        cssFileStyleAccordion = accordion_default
 
-        # cat=hh_accordion/010; type=boolean; label=Include accordion/tab JavaScript file for URL #hash/history function?
-        jsFile = 1
+        # cat=hh_accordion/010; type=options[0,tabs_default]; label=Include tab CSS with styles/layout?
+        cssFileStyleTabs = tabs_default
+
+        # cat=hh_accordion/010; type=boolean; label=Include "accordion" JavaScript file for URL #hash/history function?
+        jsFileAccordion = 1
+
+        # cat=hh_accordion/010; type=boolean; label=Include "tab" JavaScript file? - (necessary for function!)
+        jsFileTabs = 1
     }
 }

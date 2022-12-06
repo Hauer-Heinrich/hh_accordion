@@ -374,11 +374,12 @@ return [
             'order' => 9,
         ],
         'tx_hhaccordion_content_header' => [
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header',
+            'description' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header.description',
+            'exclude' => '1',
             'config' => [
                 'type' => 'input',
             ],
-            'exclude' => '1',
-            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header',
             'order' => 5,
         ],
         'tx_hhaccordion_content_whichtype' => [

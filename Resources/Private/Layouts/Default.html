@@ -6,9 +6,11 @@
 <f:render partial="Assets/JavaScriptAccordion" arguments="{_all}" />
 
 <div id="c{data.uid}" class="hh-accordion frame {data.layout} {data.frame_class} frame-type-{data.CType} frame-layout-{data.layout} {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')} {f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')} type-{f:if(condition: '{data.tx_hhaccordion_type}', then: 'tabs', else: 'accordion')}" >
-    <f:render partial="Header/All" arguments="{_all}" />
+    <f:if condition="{data.header} || {data.subheader}">
+        <f:render partial="Header/All" arguments="{_all}" />
+    </f:if>
 
-    <div class="accordion" data-item-count="{data_tx_hhaccordion_content -> f:count()}">
+    <div class="{f:if(condition: '{data.tx_hhaccordion_type}', then: 'tabs', else: 'accordion')}" data-item-count="{data_tx_hhaccordion_content -> f:count()}">
         <f:render section="Content" />
     </div>
 </div>

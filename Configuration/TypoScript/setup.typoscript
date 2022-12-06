@@ -83,7 +83,9 @@ tt_content.hhaccordion_hh_accordion {
     }
 
     settings {
-        cssFileStyle = {$plugin.tx_hhaccordion.settings.cssFileStyle}
-        jsFile = {$plugin.tx_hhaccordion.settings.jsFile}
+        cssFileStyleAccordion = {$plugin.tx_hhaccordion.settings.cssFileStyleAccordion}
+        cssFileStyleTabs = {$plugin.tx_hhaccordion.settings.cssFileStyleTabs}
+        jsFileAccordion = {$plugin.tx_hhaccordion.settings.jsFileAccordion}
+        jsFileTabs = {$plugin.tx_hhaccordion.settings.jsFileTabs}
     }
 }
