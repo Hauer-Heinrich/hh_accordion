@@ -23,7 +23,6 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, tx_hhaccordion_content_header, tx_hhaccordion_content_whichtype, tx_hhaccordion_content_default_text, tx_hhaccordion_content_default_assets, tx_hhaccordion_content_elements',
     ],
     'types' => [
         1 => [
@@ -69,7 +68,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
