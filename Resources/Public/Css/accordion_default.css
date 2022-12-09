@@ -57,4 +57,38 @@
 .js .hh-accordion > .tabs > .content[hidden] {
   visibility: hidden;
 }
-/*# sourceMappingURL=sourcemaps/accordion.css.map */
+
+.hh-accordion .accordion {
+  background-color: var(--accordion-background-color, #fff);
+  border-color: var(--accordion-border-color, #ccc);
+  border-radius: var(--accordion-border-radius, 8px);
+  border-style: var(--accordion-border-style, solid);
+  border-width: var(--accordion-border-width, 1px);
+}
+.hh-accordion .accordion > details:not(:first-child) {
+  border-top: 1px solid var(--accordion-details-border-color, #ccc);
+}
+.hh-accordion .accordion > details > summary {
+  padding: 1em;
+}
+.hh-accordion .accordion > details > summary:hover .summary-chevron-up svg {
+  opacity: 1;
+}
+.hh-accordion .accordion > details > :not(summary):not(.summary-chevron-down) {
+  border-top: var(--accordion-content-border-top, 1px solid #ccc);
+  padding: 1em;
+}
+.hh-accordion .accordion .summary-chevron-up,
+.hh-accordion .accordion .summary-chevron-down {
+  background-color: var(--accordion-summary-chevron-background-color, #fff);
+  pointer-events: none;
+  position: absolute;
+  right: 1em;
+  top: 0.75em;
+  width: 24px;
+}
+.hh-accordion .accordion .summary-chevron-up svg,
+.hh-accordion .accordion .summary-chevron-down svg {
+  display: block;
+}
+/*# sourceMappingURL=sourcemaps/accordion_default.css.map */

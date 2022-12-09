@@ -23,7 +23,6 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, tx_hhaccordion_content_header, tx_hhaccordion_content_whichtype, tx_hhaccordion_content_default_text, tx_hhaccordion_content_default_assets, tx_hhaccordion_content_elements',
     ],
     'types' => [
         1 => [
@@ -69,7 +68,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -180,32 +178,74 @@ return [
             'order' => 7,
         ],
         'tx_hhaccordion_content_default_assets_position' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    0 => [
-                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.0',
-                        1 => 'bottom',
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.0',
+                        0,
+                        'content-beside-text-img-above-center'
                     ],
-                    1 => [
-                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.1',
-                        1 => 'top',
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.1',
+                        1,
+                        'content-beside-text-img-above-right'
                     ],
-                    2 => [
-                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.2',
-                        1 => 'left',
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.2',
+                        2,
+                        'content-beside-text-img-above-left'
                     ],
-                    3 => [
-                        0 => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position.I.3',
-                        1 => 'right',
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.3',
+                        8,
+                        'content-beside-text-img-below-center'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.4',
+                        9,
+                        'content-beside-text-img-below-right'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.5',
+                        10,
+                        'content-beside-text-img-below-left'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.6',
+                        17,
+                        'content-inside-text-img-right'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.7',
+                        18,
+                        'content-inside-text-img-left'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.8',
+                        '--div--'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.9',
+                        25,
+                        'content-beside-text-img-right'
+                    ],
+                    [
+                        'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.10',
+                        26,
+                        'content-beside-text-img-left'
+                    ]
+                ],
+                'default' => 0,
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => false,
                     ],
                 ],
-                'maxitems' => '1',
-            ],
-            'exclude' => '1',
-            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_position',
-            'order' => 7,
+            ]
         ],
         'tx_hhaccordion_content_default_assets' => [
             'config' => [
@@ -224,8 +264,8 @@ return [
                         'uid_local' => [
                             'config' => [
                                 'appearance' => [
-                                'elementBrowserType' => 'file',
-                                'elementBrowserAllowed' => 'png,jpg,jpeg,svg,gif',
+                                    'elementBrowserType' => 'file',
+                                    'elementBrowserAllowed' => 'png,jpg,jpeg,svg,gif,youtube,vimeo',
                                 ],
                             ],
                         ],
@@ -255,7 +295,7 @@ return [
                     0 => [
                         'userFunc' => 'TYPO3\\CMS\\Core\\Resource\\Filter\\FileExtensionFilter->filterInlineChildren',
                         'parameters' => [
-                            'allowedFileExtensions' => 'png,jpg,jpeg,svg,gif',
+                            'allowedFileExtensions' => 'png,jpg,jpeg,svg,gif,youtube,vimeo',
                         ],
                     ],
                 ],
@@ -289,7 +329,6 @@ return [
         'tx_hhaccordion_content_default_text' => [
             'config' => [
                 'enableRichtext' => '1',
-                'richtextConfiguration' => 'default',
                 'type' => 'text',
             ],
             'exclude' => '1',
@@ -333,11 +372,12 @@ return [
             'order' => 9,
         ],
         'tx_hhaccordion_content_header' => [
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header',
+            'description' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header.description',
+            'exclude' => '1',
             'config' => [
                 'type' => 'input',
             ],
-            'exclude' => '1',
-            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_header',
             'order' => 5,
         ],
         'tx_hhaccordion_content_whichtype' => [

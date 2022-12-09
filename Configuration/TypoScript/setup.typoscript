@@ -15,7 +15,19 @@ tt_content.hhaccordion_hh_accordion {
         10 = EXT:hh_accordion/Resources/Private/Templates/
         20 = {$plugin.tx_hhaccordion.view.templateRootPath}
     }
-    templateName = HhAccordion
+    # templateName = Accordion
+
+    templateName = TEXT
+    templateName.stdWrap {
+        cObject = CASE
+        cObject {
+            key.data = FIELD:tx_hhaccordion_type
+            default = TEXT
+            default.value = Accordion
+            1 = TEXT
+            1.value = Tabs
+        }
+    }
 
     dataProcessing {
         10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -39,6 +51,22 @@ tt_content.hhaccordion_hh_accordion {
                     as = assets
                 }
 
+                15 = TYPO3\CMS\Frontend\DataProcessing\GalleryProcessor
+                15 {
+                    filesProcessedDataKey = assets
+                    mediaOrientation.field = tx_hhaccordion_content_default_assets_position
+                    # numberOfColumns.field = imagecols
+                    # equalMediaHeight.field = imageheight
+                    # equalMediaWidth.field = imagewidth
+                    columnSpacing = 0
+                    # borderEnabled.field = imageborder
+                    # borderPadding = 0
+                    # borderWidth = 0
+                    maxGalleryWidth = {$styles.content.mediatext.maxW}
+                    maxGalleryWidthInText = {$styles.content.mediatext.maxWInText}
+                    as = gallery
+                }
+
                 20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
                 20 {
                     if.isTrue.field = tx_hhaccordion_content_elements
@@ -55,7 +83,9 @@ tt_content.hhaccordion_hh_accordion {
     }
 
     settings {
-        cssFile = {$plugin.tx_hhaccordion.settings.cssFile}
-        jsFile = {$plugin.tx_hhaccordion.settings.jsFile}
+        cssFileStyleAccordion = {$plugin.tx_hhaccordion.settings.cssFileStyleAccordion}
+        cssFileStyleTabs = {$plugin.tx_hhaccordion.settings.cssFileStyleTabs}
+        jsFileAccordion = {$plugin.tx_hhaccordion.settings.jsFileAccordion}
+        jsFileTabs = {$plugin.tx_hhaccordion.settings.jsFileTabs}
     }
 }

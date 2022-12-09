@@ -1,22 +1,4 @@
 .hh-accordion {
-    [data-type="external"],
-    [data-type="4"] {
-        .video-embed {
-            position: relative;
-            overflow: hidden;
-            padding-top: 56.25%;
-
-            > iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border: 0;
-            }
-        }
-    }
-
     .accordion {
         background-color: var(
             --accordion-background-color,
@@ -40,34 +22,18 @@
         );
 
         > details {
-            position: relative;
-
             &:not(:first-child) {
                 border-top: 1px solid var(
-                    --details-border-color,
+                    --accordion-details-border-color,
                     #ccc
                 );
             }
 
             > summary {
-                cursor: pointer;
-                list-style: none;
                 padding: 1em;
-
-                &:focus {
-                    outline: none;
-                }
 
                 &:hover .summary-chevron-up svg {
                     opacity: 1;
-                }
-
-                &::-webkit-details-marker {
-                    display: none;
-                }
-
-                > a {
-                    pointer-events: none;
                 }
             }
 

@@ -1,16 +1,43 @@
 <?php
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['hhaccordion_hh_accordion'] = 'tx_hhaccordion_hh_accordion';
 $tempColumns = [
-    'tx_hhaccordion_arrows' => [
-        'config' => [
-            'renderType' => 'checkboxLabeledToggle',
-            'type' => 'check',
-        ],
+    'tx_hhaccordion_type' => [
+        'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhaccordion_type',
         'exclude' => '1',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxLabeledToggle',
+            'items' => [
+                [
+                    0 => '',
+                    'labelChecked' => 'Tabs',
+                    'labelUnchecked' => 'Accordion',
+                    'invertStateDisplay' => false,
+                ],
+            ],
+        ],
+    ],
+    'tx_hhaccordion_arrows' => [
         'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhaccordion_arrows',
+        'exclude' => '1',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxLabeledToggle',
+            'items' => [
+                [
+                    0 => '',
+                    'labelChecked' => 'Enabled',
+                    'labelUnchecked' => 'Disabled',
+                    'invertStateDisplay' => false,
+                ],
+            ],
+        ],
     ],
     'tx_hhaccordion_content' => [
+        'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhaccordion_content',
+        'exclude' => '1',
         'config' => [
+            'type' => 'inline',
             'appearance' => [
                 'enabledControls' => [
                     'dragdrop' => '1',
@@ -21,10 +48,7 @@ $tempColumns = [
             'foreign_sortby' => 'sorting',
             'foreign_table' => 'tx_hhaccordion_content',
             'foreign_table_field' => 'parenttable',
-            'type' => 'inline',
         ],
-        'exclude' => '1',
-        'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhaccordion_content',
     ],
 ];
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
@@ -56,9 +80,9 @@ $tempTypes = [
                 header,
                 subheader,
                 --palette--;;header_pal,
+                tx_hhaccordion_type,
                 tx_hhaccordion_content,
                 --div--;Options,
-                    layout,
                     tx_hhaccordion_arrows,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;

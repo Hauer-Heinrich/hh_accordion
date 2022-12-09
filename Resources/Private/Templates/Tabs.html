@@ -1,0 +1,62 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hhacc="http://typo3.org/ns/HauerHeinrich/HhAccordion/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:debug>{_all}</f:debug>
+<f:layout name="Default" />
+
+<f:section name="Content">
+<f:if condition="{data_tx_hhaccordion_content}">
+    <div class="menu menu-tabs" role="tablist">
+        <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+            <button class="header" id="tab-{data.uid}-{iterator.cycle}" type="button" data-hash="#panel-{data.uid}-{iterator.cycle}" role="tab" aria-controls="panel-{data.uid}-{iterator.cycle}" {f:if(condition: '{iterator.isFirst}', then: 'aria-selected="true"', else: 'aria-selected="false"')} tabindex="{f:if(condition: '{iterator.isFirst}', then: '0', else: '-1')}">
+                <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
+                    {data_item.data.tx_hhaccordion_content_header}
+                </f:if>
+            </button>
+        </f:for>
+    </div>
+
+    <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
+        <div class="content" id="panel-{data.uid}-{iterator.cycle}" role="tabpanel" tabindex="0" aria-labelledby="tab-{data.uid}-{iterator.cycle}" {f:if(condition: '{iterator.isFirst}', then: '', else: 'hidden')}>
+            <div class="ce-textpic ce-{data_item.gallery.position.horizontal} ce-{data_item.gallery.position.vertical}{f:if(condition: data_item.gallery.position.noWrap, then: ' ce-nowrap')}">
+                <f:if condition="{data_item.assets}">
+                    <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
+                        <f:for each="{data_item.assets}" as="file">
+                            <div class="ce-column" data-type="{file.type}">
+                                <f:switch expression="{file.type}">
+                                    <f:case value="3">
+                                        <f:render partial="Media/Type/Audio" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:case>
+                                    <f:case value="4">
+                                        <f:render partial="Media/Type/Video" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:case>
+                                    <f:defaultCase>
+                                        <f:render partial="Media/Type/Image" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                    </f:defaultCase>
+                                </f:switch>
+                            </div>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <f:if condition="{data_item.data.tx_hhaccordion_content_default_text}">
+                    <div class="ce-bodytext">
+                        <f:format.html>{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
+                    </div>
+                </f:if>
+            </div>
+
+            <f:if condition="{data_item.elements}">
+                <div class="content-elements" data-ce-count="{data_item.elements -> f:count()}">
+                    <f:for each="{data_item.elements}" as="element" iteration="i">
+                        <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+    </f:for>
+</f:if>
+</f:section>
+
+</html>
