@@ -8,7 +8,7 @@
 <f:if condition="{data_tx_hhaccordion_content}">
     <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
         <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
-            <details id="#accordion-{data.uid}-{iterator.index}">
+            <details id="accordion-{data.uid}-{iterator.index}">
                 <summary data-hash="#accordion-{data.uid}-{iterator.index}">
                     {data_item.data.tx_hhaccordion_content_header}
                     <div class="summary-chevron-up">

@@ -6,5 +6,6 @@
     ],
     "settings": {
         "editor.tabSize": 4,
+        "task.allowAutomaticTasks": "on",
     }
 }
