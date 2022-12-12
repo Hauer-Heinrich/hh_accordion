@@ -16,41 +16,43 @@
                     </div>
                 </summary>
 
-                <div class="ce-textpic ce-{data_item.gallery.position.horizontal} ce-{data_item.gallery.position.vertical}{f:if(condition: data_item.gallery.position.noWrap, then: ' ce-nowrap')}">
-                    <f:if condition="{data_item.assets}">
-                        <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
-                            <f:for each="{data_item.assets}" as="file">
-                                <div class="ce-column" data-type="{file.type}">
-                                    <f:switch expression="{file.type}">
-                                        <f:case value="3">
-                                            <f:render partial="Media/Type/Audio" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
-                                        </f:case>
-                                        <f:case value="4">
-                                            <f:render partial="Media/Type/Video" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
-                                        </f:case>
-                                        <f:defaultCase>
-                                            <f:render partial="Media/Type/Image" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
-                                        </f:defaultCase>
-                                    </f:switch>
-                                </div>
+                <div class="accordion-content">
+                    <div class="ce-textpic ce-{data_item.gallery.position.horizontal} ce-{data_item.gallery.position.vertical}{f:if(condition: data_item.gallery.position.noWrap, then: ' ce-nowrap')}">
+                        <f:if condition="{data_item.assets}">
+                            <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
+                                <f:for each="{data_item.assets}" as="file">
+                                    <div class="ce-column" data-type="{file.type}">
+                                        <f:switch expression="{file.type}">
+                                            <f:case value="3">
+                                                <f:render partial="Media/Type/Audio" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                            </f:case>
+                                            <f:case value="4">
+                                                <f:render partial="Media/Type/Video" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                            </f:case>
+                                            <f:defaultCase>
+                                                <f:render partial="Media/Type/Image" arguments="{file: file, dimensions: dimensions, data: data, settings: settings}" />
+                                            </f:defaultCase>
+                                        </f:switch>
+                                    </div>
+                                </f:for>
+                            </div>
+                        </f:if>
+
+                        <f:if condition="{data_item.data.tx_hhaccordion_content_default_text}">
+                            <div class="ce-bodytext">
+                                <f:format.html>{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
+                            </div>
+                        </f:if>
+                    </div>
+
+                    <f:if condition="{data_item.elements}">
+                        <div class="content-elements" data-ce-count="{data_item.elements -> f:count()}">
+                            <f:for each="{data_item.elements}" as="element" iteration="i">
+                                <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
                             </f:for>
                         </div>
                     </f:if>
-
-                    <f:if condition="{data_item.data.tx_hhaccordion_content_default_text}">
-                        <div class="ce-bodytext">
-                            <f:format.html>{data_item.data.tx_hhaccordion_content_default_text}</f:format.html>
-                        </div>
-                    </f:if>
                 </div>
-
-                <f:if condition="{data_item.elements}">
-                    <div class="content-elements" data-ce-count="{data_item.elements -> f:count()}">
-                        <f:for each="{data_item.elements}" as="element" iteration="i">
-                            <f:cObject typoscriptObjectPath="tt_content" data="{element.data}" table="tt_content" />
-                        </f:for>
-                    </div>
-                </f:if>
 
                 <div class="summary-chevron-down">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>
