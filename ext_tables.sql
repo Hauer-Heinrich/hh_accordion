@@ -90,6 +90,7 @@ CREATE TABLE tx_hhaccordion_content (
     l10n_parent int(11) unsigned DEFAULT '0' NOT NULL,
     l10n_diffsource mediumblob,
     tx_hhaccordion_content_default_assets_layout tinytext,
+    tx_hhaccordion_content_default_assets_columns int(11) unsigned DEFAULT '1' NOT NULL,
     tx_hhaccordion_content_default_assets_position tinytext,
     tx_hhaccordion_content_default_assets int(11) unsigned DEFAULT '0' NOT NULL,
     tx_hhaccordion_content_default_text mediumtext,
