@@ -7,6 +7,7 @@
 /typo3temp/
 /ENABLE_INSTALL_TOOL
 /typo3conf/ENABLE_INSTALL_TOOL
+test
 
 # Ignore cache
 /typo3conf/temp_CACHED*
