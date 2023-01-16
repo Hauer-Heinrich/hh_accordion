@@ -83,6 +83,7 @@ tt_content.hhaccordion_hh_accordion {
     }
 
     settings {
+        defaultHeaderType = {$styles.content.defaultHeaderType}
         cssFileStyleAccordion = {$plugin.tx_hhaccordion.settings.cssFileStyleAccordion}
         cssFileStyleTabs = {$plugin.tx_hhaccordion.settings.cssFileStyleTabs}
         jsFileAccordion = {$plugin.tx_hhaccordion.settings.jsFileAccordion}
