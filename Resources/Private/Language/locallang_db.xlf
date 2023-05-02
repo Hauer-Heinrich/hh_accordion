@@ -67,7 +67,7 @@
         <source>Arrows</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhaccordion_content" xml:space="preserve">
-        <source></source>
+        <source>Items</source>
       </trans-unit>
       <trans-unit id="tt_content.CType.div._hhaccordion_" xml:space="preserve">
         <source>hh_accordion</source>

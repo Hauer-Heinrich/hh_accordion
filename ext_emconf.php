@@ -21,7 +21,7 @@ $EM_CONF['hh_accordion'] = [
     'version' => '0.3.5',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.5.99',
+            'typo3' => '11.5.0-12.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

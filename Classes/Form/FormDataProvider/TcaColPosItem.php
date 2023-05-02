@@ -5,6 +5,7 @@ namespace HauerHeinrich\HhAccordion\Form\FormDataProvider;
 use \TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 class TcaColPosItem implements FormDataProviderInterface {
+
     /**
      * @var array
      */
@@ -17,14 +18,20 @@ class TcaColPosItem implements FormDataProviderInterface {
      * @return array
      */
     public function addData(array $result) {
-        if ('tt_content' !== $result['tableName']
-            || empty($result['databaseRow']['colPos'])
-            || 999 !== (int)$result['databaseRow']['colPos']
-            || ((empty($result['inlineParentUid'])
-                    || !in_array($result['inlineParentConfig']['foreign_field'], $this->supportedInlineParentFields, true))
+        if (
+            (array_key_exists('tableName', $result) && 'tt_content' !== $result['tableName'])
+            || (isset($result['databaseRow']['colPos']) && 999 !== $result['databaseRow']['colPos'])
+            || (
+                (
+                    (
+                        array_key_exists('inlineParentUid', $result) && empty($result['inlineParentUid'])
+                    )
+                    || !in_array($result['inlineParentConfig']['foreign_field'], $this->supportedInlineParentFields, true)
+                )
                 && empty(array_filter(array_intersect_key($result['databaseRow'], array_flip($this->supportedInlineParentFields))))
             )
         ) {
+
             return $result;
         }
 
@@ -33,13 +40,15 @@ class TcaColPosItem implements FormDataProviderInterface {
                 $result['processedTca']['columns']['colPos']['config']['items'] = [];
             }
 
-            array_unshift(
-                $result['processedTca']['columns']['colPos']['config']['items'],
-                [
-                    'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.colPos.nestedContentColPos',
-                    $result['databaseRow']['colPos'],
-                ]
-            );
+            if(isset($result['databaseRow']['colPos'])) {
+                array_unshift(
+                    $result['processedTca']['columns']['colPos']['config']['items'],
+                    [
+                        'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tt_content.colPos.nestedContentColPos',
+                        $result['databaseRow']['colPos'],
+                    ]
+                );
+            }
             unset($result['processedTca']['columns']['colPos']['config']['itemsProcFunc']);
         }
 

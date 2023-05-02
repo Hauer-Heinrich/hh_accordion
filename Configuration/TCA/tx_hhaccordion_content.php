@@ -22,7 +22,7 @@ return [
         'iconfile' => 'EXT:hh_accordion/Resources/Public/Icons/Extension.png',
         'hideTable' => true,
         'security' => [
-            'ignorePageTypeRestriction' => true
+            'ignorePageTypeRestriction' => true,
         ],
     ],
     'interface' => [
@@ -358,7 +358,7 @@ return [
                     'columns' => [
                         'colPos' => [
                             'config' => [
-                                'default' => '999',
+                                'default' => 987,
                             ],
                         ],
                         'CType' => [

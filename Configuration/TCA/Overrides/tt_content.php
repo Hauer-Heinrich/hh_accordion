@@ -1,4 +1,12 @@
 <?php
+defined('TYPO3') || die('Access denied.');
+
+$GLOBALS['TCA']['tt_content']['columns']['colPos']['config']['itemsProcFunc'] = \HauerHeinrich\HhAccordion\Tca\ItemProcFunc::class . '->colPos';
+$GLOBALS['TCA']['tt_content']['columns']['colPos']['config']['items'][] = [
+    'accordion_content_elements',
+    987,
+];
+
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['hhaccordion_hh_accordion'] = 'tx_hhaccordion_hh_accordion';
 $tempColumns = [
     'tx_hhaccordion_type' => [

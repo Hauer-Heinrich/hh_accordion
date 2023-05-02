@@ -1,0 +1,25 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  HauerHeinrich\HhAccordion\:
+    resource: '../Classes/*'
+
+  HauerHeinrich\HhAccordion\Tca\ItemProcFunc:
+    public: true
+
+  HauerHeinrich\HhAccordion\EventListener\ModifyDatabaseQueryForContentEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'hh-accordion/modify-database-query-for-content'
+        method: 'modify'
+        event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent
+
+  HauerHeinrich\HhAccordion\EventListener\ModifyDatabaseQueryForRecordListingEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'hh-accordion/modify-database-query-for-record'
+        method: 'modify'
+        event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent
