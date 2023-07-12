@@ -1,4 +1,5 @@
-tt_content.hhaccordion_hh_accordion = FLUIDTEMPLATE
+#tt_content.hhaccordion_hh_accordion = FLUIDTEMPLATE
+tt_content.hhaccordion_hh_accordion < lib.contentElement
 tt_content.hhaccordion_hh_accordion {
     layoutRootPaths {
         0 = EXT:fluid_styled_content/Resources/Private/Layouts/

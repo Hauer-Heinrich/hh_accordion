@@ -18,10 +18,11 @@ $EM_CONF['hh_accordion'] = [
     'author_email' => 'chackl@hauer-heinrich.de',
     'author_company' => 'www.hauer-heinrich.de',
     'state' => 'stable',
-    'version' => '0.4.0',
+    'version' => '0.4.1',
     'constraints' => [
         'depends' => [
             'typo3' => '11.5.0-12.4.99',
+            'fluid_styled_content' => '',
         ],
         'conflicts' => [],
         'suggests' => [],
