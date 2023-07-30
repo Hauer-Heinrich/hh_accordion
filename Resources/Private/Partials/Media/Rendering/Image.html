@@ -4,7 +4,7 @@
 
 <f:comment>
     Original:
-    <f:media class="image-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" loading="lazy" />
+    <f:media class="image-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" />
 </f:comment>
 
 <f:switch expression="{file.extension}">
@@ -35,10 +35,10 @@
             <source srcset="{f:uri.image(src:'{file.uid}', treatIdAsReference:'1', cropVariant: 'smartphone', maxHeight: '{data.imageheight}', width: '{dimensions.width}', maxWidth: '320')}" media="(min-width: 200px)">
             <f:if condition="{file.extension} == 'pdf'">
                 <f:then>
-                    <f:media class="image-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" loading="lazy" />
+                    <f:media class="image-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" />
                 </f:then>
                 <f:else>
-                    <f:image class="image-embed-item" image="{file}" width="{dimensions.width}" height="{dimensions.height}" cropVariant="default" maxWidth="1920" loading="lazy" />
+                    <f:image class="image-embed-item" image="{file}" width="{dimensions.width}" height="{dimensions.height}" cropVariant="default" maxWidth="1920" />
                 </f:else>
             </f:if>
         </picture>
