@@ -23,11 +23,11 @@
 .hh-accordion .accordion > details > summary:focus {
   outline: none;
 }
-.hh-accordion .accordion > details > summary::-webkit-details-marker {
-  display: none;
-}
 .hh-accordion .accordion > details > summary > a {
   pointer-events: none;
+}
+.hh-accordion .accordion details > summary::-webkit-details-marker {
+  display: none;
 }
 
 /* tabs don't work without javascript! */
