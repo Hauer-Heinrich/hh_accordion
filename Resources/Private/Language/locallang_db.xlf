@@ -51,6 +51,12 @@
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_header.description" xml:space="preserve">
         <source>Title on which you click to open.</source>
       </trans-unit>
+      <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_subheader" xml:space="preserve">
+        <source>Content subheader</source>
+      </trans-unit>
+      <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_subheader.description" xml:space="preserve">
+        <source></source>
+      </trans-unit>
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_whichtype" xml:space="preserve">
         <source>Which content type?</source>
       </trans-unit>
@@ -59,6 +65,9 @@
       </trans-unit>
       <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_whichtype.I.1" xml:space="preserve">
         <source>ContentElements (CE)</source>
+      </trans-unit>
+      <trans-unit id="tx_hhaccordion_content.tx_hhaccordion_content_open" xml:space="preserve">
+        <source>Open element on start</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhaccordion_type" xml:space="preserve">
         <source>Display type</source>

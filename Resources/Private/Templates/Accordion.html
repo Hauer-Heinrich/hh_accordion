@@ -8,9 +8,12 @@
 <f:if condition="{data_tx_hhaccordion_content}">
     <f:for each="{data_tx_hhaccordion_content}" as="data_item" iteration="iterator">
         <f:if condition="{data_item.data.tx_hhaccordion_content_header}">
-            <details id="accordion-{data.uid}-{iterator.index}">
+            <details id="accordion-{data.uid}-{iterator.index}" {f:if(condition: '{data_item.data.tx_hhaccordion_content_open}', then: 'open')}>
                 <summary data-hash="#accordion-{data.uid}-{iterator.index}">
-                    {data_item.data.tx_hhaccordion_content_header}
+                    <span class="accordion-header">{data_item.data.tx_hhaccordion_content_header}</span>
+                    <f:if condition="{data_item.data.tx_hhaccordion_content_subheader}">
+                        <span class="accordion-subheader">{data_item.data.tx_hhaccordion_content_subheader}</span>
+                    </f:if>
                     <div class="summary-chevron-up">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </div>

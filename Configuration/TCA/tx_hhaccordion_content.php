@@ -30,8 +30,8 @@ return [
     'types' => [
         1 => [
             'showitem' => '
-                tx_hhaccordion_content_header,
-                tx_hhaccordion_content_whichtype,
+                --palette--;;header,
+                --palette--;;options_1,
                 tx_hhaccordion_content_default_text,
                 --palette--;;assets,
                 tx_hhaccordion_content_elements,
@@ -47,6 +47,12 @@ return [
         ],
     ],
     'palettes' => [
+        'header' => [
+            'showitem' => 'tx_hhaccordion_content_header, tx_hhaccordion_content_subheader',
+        ],
+        'options_1' => [
+            'showitem' => 'tx_hhaccordion_content_open, tx_hhaccordion_content_whichtype',
+        ],
         'assets' => [
             'showitem' => 'tx_hhaccordion_content_default_assets_layout, tx_hhaccordion_content_default_assets_columns, tx_hhaccordion_content_default_assets_position, --linebreak--, tx_hhaccordion_content_default_assets',
         ],
@@ -384,6 +390,15 @@ return [
             ],
             'order' => 5,
         ],
+        'tx_hhaccordion_content_subheader' => [
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_subheader',
+            'description' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_subheader.description',
+            'exclude' => '1',
+            'config' => [
+                'type' => 'input',
+            ],
+            'order' => 5,
+        ],
         'tx_hhaccordion_content_whichtype' => [
             'config' => [
                 'items' => [
@@ -403,6 +418,19 @@ return [
             'exclude' => '1',
             'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_whichtype',
             'order' => 6,
+        ],
+        'tx_hhaccordion_content_open' => [
+            'exclude' => '1',
+            'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_open',
+            'description' => '',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    [
+                        'label' => 'Open',
+                    ],
+                ],
+            ],
         ],
     ],
 ];

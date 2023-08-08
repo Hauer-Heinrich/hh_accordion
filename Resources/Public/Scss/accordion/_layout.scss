@@ -30,6 +30,8 @@
             }
 
             > summary {
+                display: flex;
+                flex-direction: column;
                 padding: 1em;
 
                 &:hover .summary-chevron-up svg {

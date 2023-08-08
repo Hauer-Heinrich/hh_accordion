@@ -89,6 +89,7 @@ CREATE TABLE tx_hhaccordion_content (
     sys_language_uid int(11) DEFAULT '0' NOT NULL,
     l10n_parent int(11) unsigned DEFAULT '0' NOT NULL,
     l10n_diffsource mediumblob,
+
     tx_hhaccordion_content_default_assets_layout tinytext,
     tx_hhaccordion_content_default_assets_columns int(11) unsigned DEFAULT '1' NOT NULL,
     tx_hhaccordion_content_default_assets_position tinytext,
@@ -96,7 +97,10 @@ CREATE TABLE tx_hhaccordion_content (
     tx_hhaccordion_content_default_text mediumtext,
     tx_hhaccordion_content_elements int(11) unsigned DEFAULT '0' NOT NULL,
     tx_hhaccordion_content_header tinytext,
+    tx_hhaccordion_content_subheader tinytext,
     tx_hhaccordion_content_whichtype tinytext,
+    tx_hhaccordion_content_open int(11) unsigned DEFAULT '0' NOT NULL,
+
     PRIMARY KEY (uid),
     KEY parent (pid),
     KEY t3ver_oid (t3ver_oid,t3ver_wsid),

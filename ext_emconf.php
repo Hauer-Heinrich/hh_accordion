@@ -1,13 +1,13 @@
 <?php
 
 /***************************************************************
- * Extension Manager/Repository config file for ext 'hh_accordion'.
+ * Extension Manager/Repository config file for ext "hh_accordion".
  *
- * Auto generated 13-12-2018 15:33
+ * Auto generated 08-08-2023 12:10
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
- * writing. 'version' and 'dependencies' must not be touched!
+ * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
 $EM_CONF['hh_accordion'] = [

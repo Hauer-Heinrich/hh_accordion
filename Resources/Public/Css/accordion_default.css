@@ -69,6 +69,8 @@
   border-top: 1px solid var(--accordion-details-border-color, #ccc);
 }
 .hh-accordion .accordion > details > summary {
+  display: flex;
+  flex-direction: column;
   padding: 1em;
 }
 .hh-accordion .accordion > details > summary:hover .summary-chevron-up svg {
