@@ -21,7 +21,7 @@
                         <div class="ce-gallery" data-ce-images="{data_item.assets -> f:count()}">
                             <f:for each="{data_item.assets}" as="file">
                                 <div class="ce-column">
-                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" loading="lazy" />
+                                    <f:image image="{file}" alt="{file.alternative}" title="{file.title}" />
                                 </div>
                             </f:for>
                         </div>
