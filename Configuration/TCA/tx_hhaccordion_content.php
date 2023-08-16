@@ -427,7 +427,7 @@ return [
                 'type' => 'check',
                 'items' => [
                     [
-                        'label' => 'Open',
+                        'Open',
                     ],
                 ],
             ],

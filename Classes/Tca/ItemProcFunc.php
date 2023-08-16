@@ -34,8 +34,7 @@ class ItemProcFunc {
     public function colPos(array &$parameters): void {
         $row = $parameters['row'];
 
-        if($row['tx_hhaccordion_content'] > 0 && $row['CType'][0] !== 'hhaccordion_hh_accordion') {
-            DebuggerUtility::var_dump($row);
+        if(isset($row['tx_hhaccordion_content_elements_parent']) && $row['tx_hhaccordion_content_elements_parent'] > 0) {
             try {
                 $items = [];
                 $items[] = [
@@ -43,7 +42,9 @@ class ItemProcFunc {
                     987,
                 ];
                 $parameters['items'] = $items;
+
                 return;
+
                 // if (is_array($grid)) {
                 //     $items = [];
                 //     foreach ($grid as $rows) {
