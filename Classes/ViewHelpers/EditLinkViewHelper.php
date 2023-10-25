@@ -2,9 +2,10 @@
 
 namespace HauerHeinrich\HhAccordion\ViewHelpers;
 
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 use \TYPO3\CMS\Backend\Routing\UriBuilder;
 
 class EditLinkViewHelper extends AbstractTagBasedViewHelper {
@@ -36,7 +37,6 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
      */
     public function render() {
         $element = $this->arguments['element'];
-
         if ($this->doEdit && $this->getBackendUser()->recordEditAccessInternals('tt_content', $element)) {
             $urlParameters = [
                 'edit' => [

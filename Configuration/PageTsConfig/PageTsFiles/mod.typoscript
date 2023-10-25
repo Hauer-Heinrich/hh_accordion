@@ -3,15 +3,11 @@ mod {
         tt_content {
             ### Backend preview
             preview {
-                hhaccordion {
-                    templateRootPath = EXT:hh_accordion/Resources/Private/Backend/Templates/Content/
-                    layoutRootPath = EXT:hh_accordion/Resources/Private/Backend/Layout/
-                    partialRootPath = EXT:hh_accordion/Resources/Private/Backend/Partials/
-                }
+                hhaccordion_hh_accordion = EXT:hh_accordion/Resources/Private/Backend/Templates/Accordion.html
             }
         }
     }
-    
+
     wizards {
         ### New content element wizard
         newContentElement {
