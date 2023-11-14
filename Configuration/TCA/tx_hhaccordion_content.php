@@ -365,6 +365,7 @@ return [
                         'colPos' => [
                             'config' => [
                                 'default' => 987,
+                                'itemsProcFunc' => \HauerHeinrich\HhAccordion\Tca\ItemProcFunc::class . '->colPos',
                             ],
                         ],
                         'CType' => [

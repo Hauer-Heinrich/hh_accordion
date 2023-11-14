@@ -21,7 +21,7 @@
             "url": "https://www.paypal.com/paypalme/hauerheinrich"
         }
     ],
-    "version": "0.5.4",
+    "version": "0.5.5",
     "license": ["MIT"],
     "keywords": [
         "TYPO3 CMS",
