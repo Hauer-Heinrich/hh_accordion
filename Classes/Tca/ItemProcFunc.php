@@ -12,7 +12,7 @@ namespace HauerHeinrich\HhAccordion\Tca;
  * of the License, or any later version.
  */
 
-use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+// use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use \TYPO3\CMS\Backend\View\BackendLayoutView;
 
 class ItemProcFunc {
