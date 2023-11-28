@@ -371,6 +371,7 @@ return [
                         'CType' => [
                             'config' => [
                                 'default' => 'textmedia',
+                                'itemsProcFunc' => \HauerHeinrich\HhAccordion\Tca\ItemProcFunc::class . '->filterCtypes',
                             ],
                         ],
                     ],

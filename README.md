@@ -17,6 +17,14 @@ In addition: Include Page Config
 ### Features
 - accordion or tab-menu switch button
 - try's to be accessible / barrier free
+- you can set the allowed CType(s) for the inline/irre field content-elements via TypoScript (default: 'all') e. g.
+    ```
+    tt_content.hhaccordion_hh_accordion {
+        settings {
+            allowedCtypes = textmedia,text,image,textpic,uploads
+        }
+    }
+    ```
 
 #### Constants Editor
 Include tab CSS with styles/layout for accordion:

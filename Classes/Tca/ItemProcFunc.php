@@ -14,6 +14,8 @@ namespace HauerHeinrich\HhAccordion\Tca;
 
 // use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use \TYPO3\CMS\Backend\View\BackendLayoutView;
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 
 class ItemProcFunc {
 
@@ -67,5 +69,48 @@ class ItemProcFunc {
         }
 
         $this->backendLayoutView->colPosListItemProcFunc($parameters);
+    }
+
+    /**
+     * filterCtypes
+     * allow only CTypes which are set via TypoScript settings 'allowedCtypes'
+     *
+     * @param  array $parameters
+     * @return void
+     */
+    public function filterCtypes(array &$parameters): void {
+        if(!empty($parameters) && isset($parameters['items'])) {
+            $configurationManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
+            $settings = $configurationManager->getConfiguration(
+                \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,
+                'hh_accordion'
+            );
+
+            if(
+                !empty($settings)
+                && is_array($settings)
+                && isset($settings['tt_content.']['hhaccordion_hh_accordion.']['settings.'])
+            ) {
+                $typoScript = $settings['tt_content.']['hhaccordion_hh_accordion.']['settings.'];
+
+                if(isset($typoScript['allowedCtypes'])) {
+                    if($typoScript['allowedCtypes'] === 'all') {
+                        return;
+                    }
+
+                    if(is_string($typoScript['allowedCtypes'])) {
+                        $allowedCtypesArray = explode(',', $typoScript['allowedCtypes']);
+
+                        foreach ($parameters['items'] as $key => $value) {
+                            $cType = $value[1];
+                            if(empty($cType) || in_array($cType, $allowedCtypesArray)) {
+                                continue;
+                            }
+                            unset($parameters['items'][$key]);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

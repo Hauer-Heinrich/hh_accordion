@@ -89,5 +89,8 @@ tt_content.hhaccordion_hh_accordion {
         cssFileStyleTabs = {$plugin.tx_hhaccordion.settings.cssFileStyleTabs}
         jsFileAccordion = {$plugin.tx_hhaccordion.settings.jsFileAccordion}
         jsFileTabs = {$plugin.tx_hhaccordion.settings.jsFileTabs}
+
+        ### e. g. textmedia,text,image,textpic,uploads,table
+        allowedCtypes = all
     }
 }
