@@ -34,7 +34,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             accSummary.addEventListener("click", (e) => {
                 accCloseDetailsMultiple(accDetail, accDetails);
-                history.pushState(null, null, accSummary.getAttribute("data-hash"));
+                const dataHash = accSummary.getAttribute("data-hash");
+
+                if(window.location.hash == dataHash) {
+                    const url = window.location.href.replace(dataHash, '');
+                    history.pushState(null, null, url);
+                } else {
+                    history.pushState(null, null, accSummary.getAttribute("data-hash"));
+                }
+
                 // accOpenDetails(accDetail); // Not needed, because HTML <details> component is opening/closing
             });
         });
