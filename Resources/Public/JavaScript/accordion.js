@@ -43,7 +43,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     history.pushState(null, null, accSummary.getAttribute("data-hash"));
                 }
 
-                // accOpenDetails(accDetail); // Not needed, because HTML <details> component is opening/closing
+                window.addEventListener('hashchange', function() {
+                    const hash = document.querySelector(window.location.hash);
+                    accCloseDetailsMultiple(hash, accDetails);
+                    accOpenDetails(hash);
+                }, false);
             });
         });
     });
