@@ -22,7 +22,7 @@ $EM_CONF['hh_accordion'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.5.0-12.4.99',
-            'fluid_styled_content' => '',
+            'fluid_styled_content' => '11.5.0-12.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],
