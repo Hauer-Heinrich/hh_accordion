@@ -21,11 +21,6 @@
             }, false);
         }
 
-        // FEATURE: if hash is set from another place outside of hh_accordion
-        // window.addEventListener('hashchange', function() {
-        //     toggleTabsContent(window.location.hash);
-        // }, false);
-
         /**
          * openContent
          * @param {String} hashId - example: "#tab325628"
@@ -64,5 +59,11 @@
                 openContent(hashId);
             }
         }
+
+        window.addEventListener('hashchange', function() {
+            const hashId = window.location.hash;
+            closeAllTabs(hashId);
+            openContent(hashId);
+        }, false);
     });
 })(window);
