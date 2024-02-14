@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 if(hash != null){
                     accCloseDetailsMultiple(hash, accDetails);
                     accOpenDetails(hash);
+                    hash.scrollIntoView();
                 }
             }, false);
         });

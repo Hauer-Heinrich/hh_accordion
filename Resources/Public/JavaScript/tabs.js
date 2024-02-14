@@ -70,6 +70,7 @@
             if(document.querySelector(".hh-accordion > .tabs > .menu-tabs > button[data-hash='" + hashId + "']") != null) {
                 closeAllTabs(hashId);
                 openContent(hashId);
+                document.querySelector(".hh-accordion > .tabs > " + hashId).scrollIntoView();
             }
         }, false);
     });
