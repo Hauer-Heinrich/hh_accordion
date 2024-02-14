@@ -9,7 +9,12 @@
         // check if location.hash is given on page-load // new request
         if (window.location.hash) {
             if (window.location.hash.startsWith("#panel")) {
-                toggleTabsContent(window.location.hash);
+                if(document.querySelector(window.location.hash) != null) {
+                    toggleTabsContent(window.location.hash);
+                }
+                else {
+                    console.log("Error: No element found with " + window.location.hash);
+                }
             }
         }
 
@@ -62,8 +67,11 @@
 
         window.addEventListener('hashchange', function() {
             const hashId = window.location.hash;
-            closeAllTabs(hashId);
-            openContent(hashId);
+            if(document.querySelector(".hh-accordion > .tabs > .menu-tabs > button[data-hash='" + hashId + "']") != null) {
+                closeAllTabs(hashId);
+                openContent(hashId);
+                document.querySelector(".hh-accordion > .tabs > " + hashId).scrollIntoView();
+            }
         }, false);
     });
 })(window);

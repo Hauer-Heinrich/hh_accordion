@@ -2,17 +2,17 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-function accOpenDetails(element){
+function accOpenDetails(element) {
     element.open = true;
 }
 
-function accCloseDetails(element){
+function accCloseDetails(element) {
     element.removeAttribute("open");
 }
 
-function accCloseDetailsMultiple(currentElement, allElements){
+function accCloseDetailsMultiple(currentElement, allElements) {
     allElements.forEach((el) => {
-        if(!currentElement.isEqualNode(el)){
+        if(!currentElement.isEqualNode(el)) {
             accCloseDetails(el);
         }
     });
@@ -24,7 +24,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         if (window.location.hash) {
             if (window.location.hash.startsWith("#accordion")) {
-                accOpenDetails(document.querySelector(window.location.hash));
+                if(document.querySelector(window.location.hash) != null) {
+                    accOpenDetails(document.querySelector(window.location.hash));
+                }
+                else {
+                    console.log("Error: No element found with " + window.location.hash);
+                }
             }
         }
 
@@ -43,12 +48,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     history.pushState(null, null, accSummary.getAttribute("data-hash"));
                 }
 
-                window.addEventListener('hashchange', function() {
-                    const hash = document.querySelector(window.location.hash);
+                // accOpenDetails(accDetail); // Not needed, because HTML <details> component is opening/closing
+            });
+            window.addEventListener('hashchange', function() {
+                const hash = document.querySelector(window.location.hash);
+                if(hash != null){
                     accCloseDetailsMultiple(hash, accDetails);
                     accOpenDetails(hash);
-                }, false);
-            });
+                    hash.scrollIntoView();
+                }
+            }, false);
         });
     });
 });
