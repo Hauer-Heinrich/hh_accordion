@@ -2,11 +2,11 @@
     xmlns:hh="http://typo3.org/ns/HauerHeinrich/HhAccordion/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-<f:if condition="{settings.jsFileAccordion}">
+<f:if condition="{data.tx_hhaccordion_type} === 0 && {settings.jsFileAccordion}">
     <f:asset.script identifier="accordion" src="EXT:hh_accordion/Resources/Public/JavaScript/accordion.min.js" />
 </f:if>
 
-<f:if condition="{settings.jsFileTabs}">
+<f:if condition="{data.tx_hhaccordion_type} === 1 && {settings.jsFileTabs}">
     <f:asset.script identifier="tabs" src="EXT:hh_accordion/Resources/Public/JavaScript/tabs.min.js" />
 </f:if>
 
