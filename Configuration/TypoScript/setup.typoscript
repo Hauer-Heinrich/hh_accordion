@@ -85,10 +85,16 @@ tt_content.hhaccordion_hh_accordion {
 
     settings {
         defaultHeaderType = {$styles.content.defaultHeaderType}
+
         cssFileStyleAccordion = {$plugin.tx_hhaccordion.settings.cssFileStyleAccordion}
         cssFileStyleTabs = {$plugin.tx_hhaccordion.settings.cssFileStyleTabs}
         jsFileAccordion = {$plugin.tx_hhaccordion.settings.jsFileAccordion}
         jsFileTabs = {$plugin.tx_hhaccordion.settings.jsFileTabs}
+
+        customCssAccordion = {$plugin.tx_hhaccordion.settings.customCssAccordion}
+        customCssTabs = {$plugin.tx_hhaccordion.settings.customCssTabs}
+        customJsAccordion = {$plugin.tx_hhaccordion.settings.customJsAccordion}
+        customJsTabs = {$plugin.tx_hhaccordion.settings.customJsTabs}
 
         ### e. g. textmedia,text,image,textpic,uploads,table
         allowedCtypes = all

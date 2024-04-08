@@ -10,4 +10,12 @@
     <f:asset.script identifier="tabs" src="EXT:hh_accordion/Resources/Public/JavaScript/tabs.min.js" />
 </f:if>
 
+<f:if condition="{data.tx_hhaccordion_type} === 0 && {settings.customJsAccordion}">
+    <f:asset.script identifier="accordionCustom" src="{settings.customJsAccordion}" />
+</f:if>
+
+<f:if condition="{data.tx_hhaccordion_type} === 1 && {settings.customJsTabs}">
+    <f:asset.script identifier="tabsCustom" src="{settings.customJsTabs}" />
+</f:if>
+
 </html>

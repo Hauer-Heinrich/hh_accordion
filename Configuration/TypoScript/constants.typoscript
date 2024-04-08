@@ -22,5 +22,17 @@ plugin.tx_hhaccordion {
 
         # cat=hh_accordion/010; type=boolean; label=Include "tab" JavaScript file? - (necessary for function!)
         jsFileTabs = 1
+
+        # cat=hh_accordion/file; type=string; label=Include custom "accordion" css?
+        customCssAccordion =
+
+        # cat=hh_accordion/file; type=string; label=Include custom "tab" css?
+        customCssTabs =
+
+        # cat=hh_accordion/file; type=string; label=Include custom "accordion" javascript?
+        customJsAccordion =
+
+        # cat=hh_accordion/file; type=string; label=Include custom "tab" javascript?
+        customJsTabs =
     }
 }

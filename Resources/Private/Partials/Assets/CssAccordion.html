@@ -10,4 +10,12 @@
     <f:asset.css identifier="tabs" href="EXT:hh_accordion/Resources/Public/Css/{settings.cssFileStyleTabs}.min.css" />
 </f:if>
 
+<f:if condition="{data.tx_hhaccordion_type} === 0 && {settings.customCssAccordion}">
+    <f:asset.css identifier="accordionCustom" href="{settings.customCssAccordion}" />
+</f:if>
+
+<f:if condition="{data.tx_hhaccordion_type} === 1 && {settings.customCssTabs}">
+    <f:asset.css identifier="tabsCustom" href="{settings.customCssTabs}" />
+</f:if>
+
 </html>
