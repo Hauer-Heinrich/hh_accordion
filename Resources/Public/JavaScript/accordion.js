@@ -19,8 +19,8 @@ function accCloseDetailsMultiple(currentElement, allElements) {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    document.querySelectorAll(".hh-accordion .accordion").forEach(function(accWrapper) {
-        const accDetails = accWrapper.querySelectorAll("details");
+    document.querySelectorAll(".hh-accordion > .accordion").forEach(function(accWrapper) {
+        const accDetails = accWrapper.querySelectorAll(":scope > details");
 
         if (window.location.hash) {
             if (window.location.hash.startsWith("#accordion")) {
