@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace HauerHeinrich\HhAccordion\EventListener;
 
 // use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \TYPO3\CMS\Core\Database\Connection;
 use \TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent;
 
 /**
@@ -23,7 +24,7 @@ final class ModifyDatabaseQueryForRecordListingEventListener {
             // Only hide elements which are inline, allowing for standard
             // elements to show
             $event->getQueryBuilder()->andWhere(
-                $event->getQueryBuilder()->expr()->lte('tx_hhaccordion_content_elements_parent', $event->getQueryBuilder()->createNamedParameter(0, \PDO::PARAM_INT))
+                $event->getQueryBuilder()->expr()->lte('tx_hhaccordion_content_elements_parent', $event->getQueryBuilder()->createNamedParameter(0, Connection::PARAM_INT))
             );
         }
     }
