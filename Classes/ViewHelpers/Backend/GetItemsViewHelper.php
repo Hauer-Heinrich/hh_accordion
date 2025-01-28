@@ -38,7 +38,7 @@ class GetItemsViewHelper extends AbstractViewHelper {
                     ->executeQuery();
 
                 if(!empty($result)) {
-                    $accContentItems = $result->fetchAll();
+                    $accContentItems = $result->fetchAllAssociative();
 
                     $templateVariableContainer = $renderingContext->getVariableProvider();
                     $templateVariableContainer->add('accordionItems', $accContentItems);
