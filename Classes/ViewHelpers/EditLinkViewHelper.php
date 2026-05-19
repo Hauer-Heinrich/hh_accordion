@@ -26,16 +26,16 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
         return $GLOBALS['BE_USER'];
     }
 
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('element', 'array', '', true);
     }
 
     /**
      * returning a EditLink-Tag for TYPO3 Backend
      * @param array $element
-     * @return mixed
+     * @return string
      */
-    public function render() {
+    public function render(): string {
         $element = $this->arguments['element'];
         if ($this->doEdit && $this->getBackendUser()->recordEditAccessInternals('tt_content', $element)) {
             $urlParameters = [

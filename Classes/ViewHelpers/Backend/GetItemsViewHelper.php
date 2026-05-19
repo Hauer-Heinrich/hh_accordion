@@ -9,8 +9,12 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class GetItemsViewHelper extends AbstractViewHelper {
 
-    public function initializeArguments() {
+    public function initializeArguments(): void {
         $this->registerArgument('element', 'array', '', true);
+    }
+
+    public function render(): string{
+        return self::renderStatic($this->arguments, function() { return ''; }, $this->renderingContext);
     }
 
     /**

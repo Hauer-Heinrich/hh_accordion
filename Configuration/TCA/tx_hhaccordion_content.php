@@ -186,7 +186,7 @@ return [
             'label' => 'LLL:EXT:hh_accordion/Resources/Private/Language/locallang_db.xlf:tx_hhaccordion_content.tx_hhaccordion_content_default_assets_layout',
             'order' => 7,
         ],
-        'tx_hhaccordion_content_default_assets_columns' => $GLOBALS['TCA']['tt_content']['columns']['imagecols'],
+        'tx_hhaccordion_content_default_assets_columns' => isset($GLOBALS['TCA']['tt_content']['columns']['imagecols']) ? $GLOBALS['TCA']['tt_content']['columns']['imagecols'] : [],
         'tx_hhaccordion_content_default_assets_position' => [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient',
