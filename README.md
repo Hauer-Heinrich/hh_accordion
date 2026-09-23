@@ -38,8 +38,3 @@ plugin.tx_hhaccordion.settings.jsFileAccordion = 0 or 1
 
 Include "tab" JavaScript file (necessary for function!):
 plugin.tx_hhaccordion.settings.jsFileTabs = 0 or 1
-
-
-##### License
-----
-MIT

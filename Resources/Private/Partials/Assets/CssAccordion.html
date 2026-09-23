@@ -3,11 +3,11 @@
     data-namespace-typo3-fluid="true">
 
 <f:if condition="{data.tx_hhaccordion_type} === 0 && {settings.cssFileStyleAccordion}">
-    <f:asset.css identifier="accordion" href="EXT:hh_accordion/Resources/Public/Css/{settings.cssFileStyleAccordion}.min.css" />
+    <f:asset.css identifier="accordion" href="EXT:hh_accordion/Resources/Public/Css/bundle/{settings.cssFileStyleAccordion}.min.css" />
 </f:if>
 
 <f:if condition="{data.tx_hhaccordion_type} === 1 && {settings.cssFileStyleTabs}">
-    <f:asset.css identifier="tabs" href="EXT:hh_accordion/Resources/Public/Css/{settings.cssFileStyleTabs}.min.css" />
+    <f:asset.css identifier="tabs" href="EXT:hh_accordion/Resources/Public/Css/bundle/{settings.cssFileStyleTabs}.min.css" />
 </f:if>
 
 <f:if condition="{data.tx_hhaccordion_type} === 0 && {settings.customCssAccordion}">

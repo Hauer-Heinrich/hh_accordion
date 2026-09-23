@@ -1,0 +1,30 @@
+[
+    {
+        "outdir": ".",
+        "entryPoints": [
+            { "in": "./Resources/Public/Css/tabs.css", "out": "./Resources/Public/Css/bundles/tabs.min" },
+            { "in": "./Resources/Public/Css/accordion.css", "out": "./Resources/Public/Css/bundles/accordion.min" },
+            { "in": "./Resources/Public/Css/tabs-default.css", "out": "./Resources/Public/Css/bundles/tabs-default.min" },
+            { "in": "./Resources/Public/Css/accordion-default.css", "out": "./Resources/Public/Css/bundles/accordion-default.min" },
+
+            { "in": "./Resources/Public/JavaScript/tabs.js", "out": "./Resources/Public/JavaScript/bundles/tabs.min" },
+            { "in": "./Resources/Public/JavaScript/accordion.js", "out": "./Resources/Public/JavaScript/bundles/accordion.min" }
+        ],
+        "bundle": true,
+        "write": true,
+        "minify": true,
+        "sourcemap": true,
+        "logLevel": "info",
+        "external": [
+            "./Images/*", "../Images/*",
+            "./Fonts/*", "../Fonts/*",
+            "./Icons/*", "../Icons/*",
+            "./Static/*", "../Static/*",
+            "./public/*", "../public/*",
+            "./static/*", "../static/*"
+        ],
+        "supported": {
+            "nesting": false
+        }
+    }
+]
