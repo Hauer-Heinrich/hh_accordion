@@ -28,10 +28,10 @@ In addition: Include Page Config
 
 #### Constants Editor
 Include tab CSS with styles/layout for accordion:
-plugin.tx_hhaccordion.settings.cssFileStyleAccordion = 0 or the provided theme (e.g. accordion_default)
+plugin.tx_hhaccordion.settings.cssFileStyleAccordion = 0 or the provided theme (e.g. accordion-default)
 
 Include tab CSS with styles/layout for tabs:
-plugin.tx_hhaccordion.settings.cssFileStyleTabs = 0 or the provided theme (e.g. tabs_default)
+plugin.tx_hhaccordion.settings.cssFileStyleTabs = 0 or the provided theme (e.g. tabs-default)
 
 #hash/history function:
 plugin.tx_hhaccordion.settings.jsFileAccordion = 0 or 1

@@ -1,28 +1,25 @@
 <?php
-
 namespace HauerHeinrich\HhAccordion\ViewHelpers;
 
-use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \TYPO3\CMS\Backend\Utility\BackendUtility;
+use \TYPO3\CMS\Core\Type\Bitmask\Permission;
 use \TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Core\Http\NormalizedParams;
 use \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
-use \TYPO3\CMS\Backend\Routing\UriBuilder;
 
 class EditLinkViewHelper extends AbstractTagBasedViewHelper {
+
     /**
+     * Name of the tag to be created by this view helper
+     *
      * @var string
+     * @api
      */
     protected $tagName = 'a';
+    protected bool $doEdit = true;
 
-    /**
-     * @var boolean
-     */
-    protected $doEdit = 1;
-
-    /**
-     * @return BackendUserAuthentication
-     */
-    protected function getBackendUser() {
+    protected function getBackendUser(): BackendUserAuthentication {
         return $GLOBALS['BE_USER'];
     }
 
@@ -30,24 +27,26 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
         $this->registerArgument('element', 'array', '', true);
     }
 
-    /**
-     * returning a EditLink-Tag for TYPO3 Backend
-     * @param array $element
-     * @return string
-     */
     public function render(): string {
         $element = $this->arguments['element'];
-        if ($this->doEdit && $this->getBackendUser()->recordEditAccessInternals('tt_content', $element)) {
+
+        if ($this->doEdit && $this->canEditContentElement($element)) {
+            $request = $GLOBALS['TYPO3_REQUEST'];
+
+            /** @var NormalizedParams $normalizedParams */
+            $normalizedParams = $request->getAttribute('normalizedParams');
+            $returnUrl = $normalizedParams->getRequestUri();
+
             $urlParameters = [
                 'edit' => [
                     'tt_content' => [
-                        $element['uid'] => 'edit'
+                        $element['record']->getUid() => 'edit'
                     ]
                 ],
-                'returnUrl' => GeneralUtility::getIndpEnv('REQUEST_URI')
+                'returnUrl' => $returnUrl
             ];
-            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-            $uri = (string)$uriBuilder->buildUriFromRoute('record_edit', $urlParameters);
+            $backendUriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+            $uri = $backendUriBuilder->buildUriFromRoute('record_edit', $urlParameters);
 
             $this->tag->addAttribute('href', $uri);
         }
@@ -56,5 +55,35 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
         $this->tag->forceClosingTag(true);
 
         return $this->tag->render();
+    }
+
+    private function canEditRecord(string $table, array $row): bool {
+        $backendUser = $this->getBackendUser();
+
+        // TYPO3 >= 14.2
+        if (method_exists($backendUser, 'checkRecordEditAccess')) {
+            return $backendUser->checkRecordEditAccess($table, $row)->isAllowed;
+        }
+
+        // TYPO3 13 / 14.0 / 14.1
+        return $backendUser->recordEditAccessInternals($table, $row);
+    }
+
+    private function canEditContentElement(array $row): bool {
+        $backendUser = $this->getBackendUser();
+        if ($backendUser->isAdmin()) {
+            return true;
+        }
+
+        $page = BackendUtility::getRecord('pages', (int)$row['pid']);
+        if (
+            $page === null
+            || !empty($page['editlock'])
+            || !$backendUser->doesUserHaveAccess($page, Permission::CONTENT_EDIT)
+        ) {
+            return false;
+        }
+
+        return $this->canEditRecord('tt_content', $row);
     }
 }

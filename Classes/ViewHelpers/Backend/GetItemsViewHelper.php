@@ -14,18 +14,8 @@ class GetItemsViewHelper extends AbstractViewHelper {
     }
 
     public function render(): string{
-        return self::renderStatic($this->arguments, function() { return ''; }, $this->renderingContext);
-    }
+        $element = $this->arguments;
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     *
-     * @return void
-     */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext) {
-        $element = $arguments['element'];
         if(!empty($element)) {
             if(isset($element['uid']) && isset($element['tx_hhaccordion_content'])) {
                 // parentid = intval($element['uid'])
@@ -46,7 +36,7 @@ class GetItemsViewHelper extends AbstractViewHelper {
 
                     $templateVariableContainer = $renderingContext->getVariableProvider();
                     $templateVariableContainer->add('accordionItems', $accContentItems);
-                    return;
+                    return '';
                 }
             }
         }

@@ -15,8 +15,4 @@ call_user_func(function() {
             TcaSelectItems::class,
         ],
     ];
-
-    // Custom UpgradeWizard
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['hhAccordion_contentElementsUpgradeWizard']
-        = \HauerHeinrich\HhAccordion\Upgrades\ContentElementsUpgradeWizard::class;
 });
