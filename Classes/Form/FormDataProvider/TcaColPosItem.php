@@ -6,16 +6,15 @@ use \TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 class TcaColPosItem implements FormDataProviderInterface {
 
-    /**
-     * @var array
-     */
-    protected $supportedInlineParentFields = array (
+    protected array $supportedInlineParentFields = [
         0 => 'tx_hhaccordion_content_elements_parent',
-    );
+    ];
 
     /**
-     * @param array $result
-     * @return array
+     * Add form data to result array
+     *
+     * @param array $result Initialized result array
+     * @return array Result filled with more data
      */
     public function addData(array $result) {
         if (

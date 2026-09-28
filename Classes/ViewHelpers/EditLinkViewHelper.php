@@ -57,18 +57,6 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
         return $this->tag->render();
     }
 
-    private function canEditRecord(string $table, array $row): bool {
-        $backendUser = $this->getBackendUser();
-
-        // TYPO3 >= 14.2
-        if (method_exists($backendUser, 'checkRecordEditAccess')) {
-            return $backendUser->checkRecordEditAccess($table, $row)->isAllowed;
-        }
-
-        // TYPO3 13 / 14.0 / 14.1
-        return $backendUser->recordEditAccessInternals($table, $row);
-    }
-
     private function canEditContentElement(array $row): bool {
         $backendUser = $this->getBackendUser();
         if ($backendUser->isAdmin()) {
@@ -84,6 +72,6 @@ class EditLinkViewHelper extends AbstractTagBasedViewHelper {
             return false;
         }
 
-        return $this->canEditRecord('tt_content', $row);
+        return $backendUser->checkRecordEditAccess('tt_content', $row)->isAllowed;
     }
 }
